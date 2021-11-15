@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask("Triet")
 
@@ -12,6 +11,13 @@ def hello_world():
 def hello(name = None):
     return render_template('hello.html', name = name)
 
-@app.route('/login/')
+@app.route('/login/', methods = ['GET','POST'])
 def login():
-    return render_template('login.html')
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials...'
+        else:
+            return redirect(url_for('home'))
+    return render_template('login.html', error = error)
+

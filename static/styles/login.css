@@ -40,6 +40,14 @@ body{
 
 }
 
+.box error{
+  color: red;
+
+  text-transform: uppercase;
+
+  font-weight: 50;
+}
+
 .box input[type = "text"],.box input[type = "password"]{
 
   border:0;
