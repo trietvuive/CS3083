@@ -3,7 +3,7 @@ import pymysql
 import hashlib
 
 app = Flask("Triet")
-
+"""
 conn = pymysql.connect(host = 'localhost',
                        user = 'root',
                        password = 'trietrie',
@@ -11,9 +11,10 @@ conn = pymysql.connect(host = 'localhost',
                        charset = 'utf8mb4',
                        cursorclass = pymysql.cursors.DictCursor)
 
+
 def md5(s):
     return hashlib.md5(s).hexdigest()
-
+"""
 @app.route("/")
 def hello_world():
     return "<p> Hello, World! </p>"
@@ -27,6 +28,7 @@ def hello(name = None):
 def login():
     error = None
     if request.method == 'POST':
+        """
         username = escape(request.form['username'])
         password = md5(escape(request.form['password']))
         cursor = conn.cursor()
@@ -35,16 +37,20 @@ def login():
 
         data = cursor.fetchone()
         cursor.close()
-        if not (request.form['username'] == 'admin' and request.form['password'] == 'admin') and not data:
+        """
+        # if not (request.form['username'] == 'admin' and request.form['password'] == 'admin') and not data:
+        if not (request.form['username'] == 'admin' and request.form['password'] == 'admin'):
             error = 'Invalid Credentials...'
         else:
             return redirect(url_for('hello'))
     return render_template('login.html', error = error)
 
+"""
 @app.route('/register/', methods = ['GET','POST'])
 def register():
     error = None
     if request.method == 'POST':
+        
         username = request.form['username']
         password = md5(escape(request.form['password']))
         cursor = conn.cursor()
@@ -62,7 +68,7 @@ def register():
             error = 'Registered =)'
         cursor.close()
     return render_template('login.html', error = error)
-    
+"""
 if __name__ == "__main__":
     app.run('127.0.0.1', 5000, debug = True)
 
