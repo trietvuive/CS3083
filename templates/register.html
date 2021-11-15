@@ -1,0 +1,31 @@
+<html lang="en" dir="ltr">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>َAnimated Register Form</title>
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/register.css') }}">
+
+  </head>
+
+  <body>
+
+<form class="box" action= "" method="post">
+
+  <h1>Register</h1>
+
+  <input type="text" name="username" placeholder="Username">
+
+  <input type="password" name="password" placeholder="Password">
+
+  <input type="submit" name="" value="Login">
+  {% if status%}
+     <status> {{status}} <status>
+  {% endif %}
+</form>
+
+
+  </body>
+</html>
