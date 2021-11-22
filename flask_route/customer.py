@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, Blueprint, request
 import pymysql
 import hashlib
 
-cust_log_veri_query = 'SELECT * FROM Users WHERE username = %s AND password = %s'
+cust_log_veri_query = 'SELECT * FROM Customer WHERE email = %s AND pwd = %s'
 cust_reg_veri_query = 'SELECT * FROM Customer WHERE email = %s'
 cust_ins_query = 'INSERT INTO Customer VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
 
