@@ -23,7 +23,7 @@ def hello_world():
 def hello():
     return render_template('hello.html', name = request.args.get('name'))
 
-@app.route('/login/', methods = ['GET','POST'])
+@app.route('/customer_login/', methods = ['GET','POST'])
 def login():
     error = None
     if request.method == 'POST':
@@ -40,9 +40,9 @@ def login():
             error = 'Invalid Credentials...'
         else:
             return redirect(url_for('hello', name = username))
-    return render_template('login.html', error = error)
+    return render_template('customer_login.html', error = error)
 
-@app.route('/register/', methods = ['GET','POST'])
+@app.route('/customer_register/', methods = ['GET','POST'])
 def register():
     status = None
     if request.method == 'POST':
@@ -63,7 +63,7 @@ def register():
             conn.commit()
             status = 'Registered =)'
         cursor.close()
-    return render_template('register.html', status = status)
+    return render_template('customer_register.html', status = status)
 if __name__ == "__main__":
     app.run('127.0.0.1', 5000, debug = True)
 

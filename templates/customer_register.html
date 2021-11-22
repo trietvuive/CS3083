@@ -1,0 +1,51 @@
+<html lang="en" dir="ltr">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>َAnimated Register Form</title>
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/register.css') }}">
+
+  </head>
+
+  <body>
+
+<form class="box" action= "" method="post">
+
+  <h1>Register</h1>
+
+  <input type="text" name="Email" placeholder="Email" required>
+
+  <input type="text" name="Name" placeholder="Name" required>
+  
+  <input type="password" name="Password" placeholder="Password" required>
+  
+  <input type="text" name="Building Number" placeholder="Building Number" required>
+
+  <input type="text" name="Address City" placeholder="Address City" required>
+  
+  <input type="text" name="Address State" placeholder="Address State" required>
+
+  <input type="text" name="Address Street" placeholder="Address Street" required>
+
+  <input type="text" name="Date Of Birth" placeholder="Date Of Birth" required>
+  
+  <input type="text" name="Passport Number" placeholder="Passport Number" required>
+
+  <input type="text" name="Passport Country" placeholder="Passport Country" required>
+  
+  <input type="text" name="Passport Expiration" placeholder="Passport Expiration" required>
+  
+  <input type="text" name="Phone Number" placeholder="Phone Number" required>
+  
+  <input type="submit" name="" value="Register">
+  {% if status%}
+     <status> {{status}} <status>
+  {% endif %}
+</form>
+
+
+  </body>
+</html>
