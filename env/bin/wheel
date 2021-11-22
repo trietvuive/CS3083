@@ -1,4 +1,4 @@
-#!/home/ec2-user/CS3083/env/bin/python3
+#!/home/ubuntu/CS3083/env/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
