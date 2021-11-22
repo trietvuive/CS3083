@@ -36,7 +36,8 @@ def login():
 
         data = cursor.fetchone()
         cursor.close()
-        if not (request.form['username'] == 'admin' and request.form['password'] == 'admin') and not data:            error = 'Invalid Credentials...'
+        if not (request.form['username'] == 'admin' and request.form['password'] == 'admin') and not data:
+            error = 'Invalid Credentials...'
         else:
             return redirect(url_for('hello', name = username))
     return render_template('login.html', error = error)
