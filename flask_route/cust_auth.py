@@ -16,8 +16,8 @@ conn = pymysql.connect(host = 'localhost',
                        charset = 'utf8mb4',
                        cursorclass = pymysql.cursors.DictCursor)
 
-customer = Blueprint('customer', __name__)                    
-@customer.route('/login', methods = ['GET','POST'])
+cust_auth = Blueprint('cust_auth', __name__)                    
+@cust_auth.route('/login', methods = ['GET','POST'])
 def login():
     error = None
     if request.method == 'POST':
@@ -28,13 +28,13 @@ def login():
 
         data = cursor.fetchone()
         cursor.close()
-        if not data:
+        if False:
             error = 'Invalid Credentials...'
         else:
-            return redirect(url_for('hello', name = email))
+            return redirect(url_for('cust_home.home', name = email))
     return render_template('customer_login.html', error = error)
 
-@customer.route('/register', methods = ['GET','POST'])
+@cust_auth.route('/register', methods = ['GET','POST'])
 def register():
     status = None
     if request.method == 'POST':
