@@ -22,17 +22,16 @@ def login():
     error = None
     if request.method == 'POST':
         email = request.form['Email']
-        print(username)
         password = md5(request.form['Password'])
         cursor = conn.cursor()
-        cursor.execute(cust_log_veri_query, (username, password))
+        cursor.execute(cust_log_veri_query, (email, password))
 
         data = cursor.fetchone()
         cursor.close()
         if not data:
             error = 'Invalid Credentials...'
         else:
-            return redirect(url_for('hello', name = username))
+            return redirect(url_for('hello', name = email))
     return render_template('customer_login.html', error = error)
 
 @customer.route('/register', methods = ['GET','POST'])
