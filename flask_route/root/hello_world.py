@@ -1,6 +1,6 @@
 from flask import Blueprint
+from route import home
 
-home = Blueprint('home', __name__)
 @home.route("/")
 def hello_world():
     return "<p> Hello, World! </p>"

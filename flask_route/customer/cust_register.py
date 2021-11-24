@@ -1,38 +1,8 @@
 from flask import render_template, redirect, url_for, Blueprint, request
 import pymysql
 import hashlib
-
-cust_log_veri_query = 'SELECT * FROM Customer WHERE email = %s AND pwd = %s'
-cust_reg_veri_query = 'SELECT * FROM Customer WHERE email = %s'
-cust_ins_query = 'INSERT INTO Customer VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-
-def md5(s):
-    return hashlib.md5(s.encode()).hexdigest()
-
-conn = pymysql.connect(host = 'localhost',
-                       user = 'root',
-                       password = 'trietrie',
-                       db='CS3083',
-                       charset = 'utf8mb4',
-                       cursorclass = pymysql.cursors.DictCursor)
-
-cust_auth = Blueprint('cust_auth', __name__)                    
-@cust_auth.route('/login', methods = ['GET','POST'])
-def login():
-    error = None
-    if request.method == 'POST':
-        email = request.form['Email']
-        password = md5(request.form['Password'])
-        cursor = conn.cursor()
-        cursor.execute(cust_log_veri_query, (email, password))
-
-        data = cursor.fetchone()
-        cursor.close()
-        if False:
-            error = 'Invalid Credentials...'
-        else:
-            return redirect(url_for('cust_home.home', name = email))
-    return render_template('customer_login.html', error = error)
+from settings import *
+from route import cust_auth
 
 @cust_auth.route('/register', methods = ['GET','POST'])
 def register():
