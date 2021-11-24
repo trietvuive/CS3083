@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, request, escape
+from flask import Flask, session
 import pymysql
 import hashlib
 from flask_route.root.hello_world import home
@@ -13,6 +13,7 @@ from route import *
 # Each file will implement the route import from route.py
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 app.register_blueprint(home, url_prefix = '/')
 app.register_blueprint(cust_auth, url_prefix = '/customer')
 app.register_blueprint(cust_home, url_prefix = '/customer')

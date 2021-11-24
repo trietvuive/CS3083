@@ -3,7 +3,6 @@ import hashlib
 
 # store global variables, basically 
 
-sessions = {}
 cust_log_veri_query = 'SELECT * FROM Customer WHERE email = %s AND pwd = %s'
 cust_reg_veri_query = 'SELECT * FROM Customer WHERE email = %s'
 cust_ins_query = 'INSERT INTO Customer VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'

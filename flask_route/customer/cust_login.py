@@ -1,12 +1,12 @@
-from flask import render_template, redirect, url_for, Blueprint, request
+from flask import render_template, redirect, url_for, Blueprint, request, session
 from settings import *
 from route import cust_auth
 import pymysql
 
 @cust_auth.route('/login', methods = ['GET','POST'])
 def login():
-    if sessions['Email'] is not None:
-        return redirect(url_for('cust_home.home', name = sessions['Email']))
+    if 'email' in session:
+        return redirect(url_for('cust_home.home', name = session['email']))
     error = None
     if request.method == 'POST':
         email = request.form['Email']
@@ -19,7 +19,7 @@ def login():
         if not data:
             error = 'Invalid Credentials...'
         else:
-            sessions['Email'] = email
+            session['email'] = email
             return redirect(url_for('cust_home.home', name = email))
     return render_template('customer_login.html', error = error)
 
