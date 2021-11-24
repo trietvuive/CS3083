@@ -5,6 +5,8 @@ import pymysql
 
 @cust_auth.route('/login', methods = ['GET','POST'])
 def login():
+    if sessions['Email'] is not None:
+        return redirect(url_for('cust_home.home', name = sessions['Email']))
     error = None
     if request.method == 'POST':
         email = request.form['Email']
@@ -17,6 +19,7 @@ def login():
         if not data:
             error = 'Invalid Credentials...'
         else:
+            sessions['Email'] = email
             return redirect(url_for('cust_home.home', name = email))
     return render_template('customer_login.html', error = error)
 

@@ -4,10 +4,12 @@ import hashlib
 from settings import *
 from route import cust_auth
 
+# Add a new route /customer/register to cust_auth blueprint
 @cust_auth.route('/register', methods = ['GET','POST'])
 def register():
     status = None
     if request.method == 'POST':
+        # get all POST values
         email = request.form['Email']
         pwd = md5(request.form['Password'])
         name = request.form['Name']
@@ -20,7 +22,8 @@ def register():
         passport_exp = request.form['Passport Expiration']
         passport_country = request.form['Passport Country']
         dob = request.form['Date Of Birth']
-        
+
+        # cust_reg_veri_query checks if the email is in the Customer table
         cursor = conn.cursor()
         cursor.execute(cust_reg_veri_query, (email))
         data = cursor.fetchone()
@@ -28,7 +31,7 @@ def register():
         if data:
             status = 'This user already exists'
         else:
-            #Todo: Red error if transaction failed
+            #Todo: Red error if transaction failed i.e put this in try catch and modify html to allow red color if failed
             cursor.execute(cust_ins_query, (email, pwd, name, building_no, add_street, add_city, add_state,
                                             phone_no, passport_num, passport_exp, passport_country, dob))
             conn.commit()
