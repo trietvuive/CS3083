@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="colorlib.com">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet" />
-    <link href="css/main.css" rel="stylesheet" />
+    <link href="{{ url_for('static',filename='styles/flights.css') }}" rel="stylesheet" />
   </head>
   <body>
     <div class="s002">
