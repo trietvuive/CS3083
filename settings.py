@@ -54,7 +54,7 @@ search_twoway_city_query =  'SELECT *' \
 
 search_status_departure_query = 'SELECT status' \
                                 'FROM flight' \
-                                'WHERE airline_name = %s AND flight_num = %s AND depart_datetime = %s'
+                                'WHERE airline_name = %s AND flight_num = %d AND depart_datetime = %s'
 search_status_arrival_query = 'SELECT status' \
                               'FROM flight' \
                               'WHERE airline_name = %s AND flight_num = %s AND arrival_datetime = %s'

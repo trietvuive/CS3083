@@ -448,6 +448,8 @@ legend {
   -webkit-padding-end: 0;
 }
 
+/* Everything up there should be optional? */
+
 /*===============================
 =            Choices            =
 ===============================*/

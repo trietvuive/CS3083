@@ -1521,7 +1521,7 @@ span.flatpickr-weekday {
   -ms-flex-align: center;
       align-items: center;
   font-family: 'Poppins', sans-serif;
-  background: url("../images/airport.jpg");
+  background: url("../images/Searchs_002.png");
   background-size: cover;
   background-position: center center;
   padding: 15px;
@@ -1573,6 +1573,12 @@ span.flatpickr-weekday {
   z-index: 1;
 }
 
+.s002 form .inner-form .input-field .icon-wrap svg {
+  fill: #555;
+  width: 14px;
+  height: 14px;
+}
+
 .s002 form .inner-form .input-field input {
   height: 70px;
   background: #fff;
@@ -1619,8 +1625,8 @@ span.flatpickr-weekday {
 }
 
 .s002 form .inner-form .input-field.second-wrap {
-  min-width: 230px;
-  max-width: 230px;
+  min-width: 190px;
+  max-width: 190px;
 }
 
 .s002 form .inner-form .input-field.third-wrap {
