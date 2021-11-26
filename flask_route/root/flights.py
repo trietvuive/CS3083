@@ -18,8 +18,8 @@ def search_flight():
             cursor.execute(search_status_departure_query, (airline_name, flight_number, date))
         records = cursor.fetchall()
 
-        return render_template('bootstrap_table.html', title = 'Status', flights = records, departure = choice == 'DEPARTURE')
+        return render_template('flight/bootstrap_table.html', title = 'Status', flights = records, departure = choice == 'DEPARTURE')
             
         
-    return render_template('checking_flight_status.html')
+    return render_template('flight/checking_flight_status.html')
 

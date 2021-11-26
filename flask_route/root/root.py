@@ -4,4 +4,4 @@ from settings import *
 
 @home.route('/')
 def hello_world():
-    return render_template('root.html')
+    return render_template('root/root.html')

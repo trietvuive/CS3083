@@ -8,6 +8,7 @@ from route import customer
 @customer.route('/register', methods = ['GET','POST'])
 def register():
     status = None
+    error = False
     if request.method == 'POST':
         # get all POST values
         email = request.form['Email']
@@ -31,10 +32,14 @@ def register():
         if data:
             status = 'This user already exists'
         else:
-            #Todo: Red error if transaction failed i.e put this in try catch and modify html to allow red color if failed
-            cursor.execute(cust_ins_query, (email, pwd, name, building_no, add_street, add_city, add_state,
+            try:
+                cursor.execute(cust_ins_query, (email, pwd, name, building_no, add_street, add_city, add_state,
                                             phone_no, passport_num, passport_exp, passport_country, dob))
-            conn.commit()
-            status = 'Registered =)'
+                conn.commit()
+                status = 'Registered =)'
+                error = False
+            except:
+                status = 'Error...=('
+                error = True
         cursor.close()
-    return render_template('customer_register.html', status = status)
+    return render_template('customer/customer_register.html', status = status, error = error)

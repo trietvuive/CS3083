@@ -32,8 +32,8 @@ img {
 
 .card-img-top {
     width: auto;
-    min-height: 220px;
-    max-height: auto;
+    min-height: 200px;
+    max-height: 200px;
     float: left;
     margin: 3px;
     padding: 3px;

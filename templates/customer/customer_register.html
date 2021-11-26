@@ -14,7 +14,7 @@
 
 <form class="box" action= "" method="post">
 
-  <h1>Register</h1>
+  <h1>Customer Register</h1>
 
   <input type="text" name="Email" placeholder="Email" required>
 
@@ -41,8 +41,12 @@
   <input type="number" name="Phone Number" placeholder="Phone Number" required>
   
   <input type="submit" name="" value="Register">
-  {% if status%}
-     <status> {{status}} <status>
+  {% if error %}
+	<error_status> {{status}} <status>
+  {% else %}
+	{% if error %}
+		<status> {{status}} <status>
+	{% endif %}
   {% endif %}
 </form>
 
