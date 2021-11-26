@@ -52,12 +52,8 @@ search_twoway_city_query =  'SELECT *' \
                             'AND dep.arrival_airport IN' \
                             '(SELECT code FROM airport WHERE city = %s)'
 
-search_status_departure_query = 'SELECT status' \
-                                'FROM flight' \
-                                'WHERE airline_name = %s AND flight_num = %d AND depart_datetime = %s'
-search_status_arrival_query = 'SELECT status' \
-                              'FROM flight' \
-                              'WHERE airline_name = %s AND flight_num = %s AND arrival_datetime = %s'
+search_status_departure_query = 'SELECT airline_name, flight_num, depart_datetime AS date, status FROM flight WHERE airline_name = %s AND flight_num = %s AND depart_datetime = %s'
+search_status_arrival_query =   'SELECT airline_name, flight_num, arrival_datetime AS date, status FROM flight WHERE airline_name = %s AND flight_num = %s AND arrival_datetime = %s'
 
 conn = pymysql.connect(host = 'localhost',
                        user = 'root',
