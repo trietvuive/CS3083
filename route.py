@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-cust_auth = Blueprint('cust_auth', __name__)
-cust_home = Blueprint('cust_home', __name__)
+customer = Blueprint('customer', __name__)
 home = Blueprint('home', __name__)
+flights = Blueprint('flights', __name__)

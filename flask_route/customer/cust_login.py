@@ -1,9 +1,9 @@
 from flask import render_template, redirect, url_for, Blueprint, request, session
 from settings import *
-from route import cust_auth
+from route import customer
 import pymysql
 
-@cust_auth.route('/login', methods = ['GET','POST'])
+@customer.route('/login', methods = ['GET','POST'])
 def login():
     if 'cust_email' in session:
         return redirect(url_for('cust_home.home', name = session['email']))

@@ -1,11 +1,11 @@
-from flask import Flask, session
+from flask import Flask
 import pymysql
 import hashlib
-from flask_route.root.hello_world import home
-import flask_route.customer.cust_login
-import flask_route.customer.cust_register
-from flask_route.customer.cust_home import cust_home
 import settings
+
+from flask_route.root import root, flights
+from flask_route.customer import cust_login, cust_register, cust_home
+
 from route import *
 
 # we'll split the big Flask file into smaller files using Blueprint
@@ -14,9 +14,10 @@ from route import *
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 app.register_blueprint(home, url_prefix = '/')
-app.register_blueprint(cust_auth, url_prefix = '/customer')
-app.register_blueprint(cust_home, url_prefix = '/customer')
+app.register_blueprint(customer, url_prefix = '/customer')
+app.register_blueprint(flights, url_prefix = '/flights')
 
 if __name__ == "__main__":
     #127.0.0.1 is localhost

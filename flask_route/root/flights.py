@@ -1,13 +1,9 @@
 from flask import Blueprint, render_template, request
-from route import home
+from route import flights
 from settings import *
 import pymysql
 
-@home.route('/')
-def hello_world():
-    return "<p> Hello, World! </p>"
-
-@home.route('/flights', methods = ['GET', 'POST'])
+@flights.route('/', methods = ['GET', 'POST'])
 def search_flight():
     if request.method == 'POST':
         airline_name = request.form['AirlineName']
@@ -27,6 +23,3 @@ def search_flight():
         
     return render_template('checking_flight_status.html')
 
-@home.route('/flights/status')
-def get_status_result():
-    return "<p> Hello, World! </p>"

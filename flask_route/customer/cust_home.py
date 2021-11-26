@@ -1,6 +1,6 @@
 from flask import render_template, Blueprint, request
-from route import cust_home
+from route import customer
 
-@cust_home.route('/home')
+@customer.route('/home')
 def home():
     return render_template('hello.html', email = request.args.get('name'))

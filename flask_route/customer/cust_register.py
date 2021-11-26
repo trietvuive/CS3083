@@ -2,10 +2,10 @@ from flask import render_template, redirect, url_for, Blueprint, request
 import pymysql
 import hashlib
 from settings import *
-from route import cust_auth
+from route import customer
 
 # Add a new route /customer/register to cust_auth blueprint
-@cust_auth.route('/register', methods = ['GET','POST'])
+@customer.route('/register', methods = ['GET','POST'])
 def register():
     status = None
     if request.method == 'POST':
