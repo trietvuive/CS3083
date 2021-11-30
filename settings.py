@@ -12,48 +12,57 @@ staff_reg_veri_query = 'SELECT * FROM AirlineStaff WHERE username = %s'
 staff_ins_query = 'INSERT INTO AirlineStaff VALUES(%s, %s, %s, %s, %s, %s)'
 staff_ins_phone_query = 'INSERT INTO StaffPhoneNumbers VALUES(%s, %s)'
 
-search_oneway_airport_query = 'SELECT * ' \
-                              'FROM flight ' \
-                              'WHERE depart_datetime > CURRENT_TIMESTAMP ' \
-                              'AND depart_datetime = %s ' \
-                              'AND depart_airport = %s ' \
-                              'AND arrival_airport IN ' \
-                              '(SELECT code FROM airport WHERE name = %s)'
-search_oneway_city_query = 'SELECT * ' \
-                           'FROM flight ' \
-                           'WHERE depart_datetime > CURRENT_TIMESTAMP ' \
-                           'AND depart_datetime = %s ' \
-                           'AND depart_airport IN ' \
-                           '(SELECT code ' \
-                           'FROM airport ' \
-                           'WHERE city = %s) ' \
-                           'AND arrival_airport IN ' \
-                           '(SELECT code FROM airport WHERE city = %s)'
-search_twoway_airport_query = 'SELECT * ' \
-                              'FROM flight AS dep, flight AS ret ' \
-                              'WHERE dep.depart_datetime > CURRENT_TIMESTAMP ' \
-                              'AND dep.flight_num = ret.flight_num ' \
-                              'AND dep.depart_datetime < ret.depart_datetime ' \
-                              'AND dep.depart_datetime = %s ' \
-                              'AND ret.depart_datetime = %s ' \
-                              'AND dep.depart_airport IN ' \
-                              '(SELECT code FROM airport WHERE name = %s) ' \
-                              'AND dep.arrival_airport IN ' \
-                              '(SELECT code FROM airport WHERE name = %s) '
-search_twoway_city_query =  'SELECT *' \
-                            'FROM flight AS dep, flight AS ret ' \
-                            'WHERE dep.depart_datetime > CURRENT_TIMESTAMP ' \
-                            'AND dep.flight_num = ret.flight_num ' \
-                            'AND dep.depart_datetime < ret.depart_datetime ' \
-                            'AND dep.depart_datetime = %s ' \
-                            'AND ret.depart_datetime = %s ' \
-                            'AND dep.depart_airport IN ' \
-                            '(SELECT code FROM airport WHERE city = %s) ' \
-                            'AND dep.arrival_airport IN ' \
-                            '(SELECT code FROM airport WHERE city = %s)'
+# Searching for Oneway Flights by Airport Name
+search_oneway_airport_query ='SELECT *' \
+                             'FROM Flight' \
+                             'WHERE depart_datetime > CURRENT_TIMESTAMP' \
+                             'AND CAST(depart_datetime AS date) = %s' \
+                             'AND depart_airport IN' \
+                             '(SELECT code FROM Airport WHERE name = %s)' \
+                             'AND arrival_airport IN' \
+                             '(SELECT code FROM Airport WHERE name = %s)'
 
-search_status_departure_query = 'SELECT airline_name, flight_num, depart_datetime AS date, status FROM Flight WHERE airline_name = %s AND flight_num = %s AND depart_datetime = %s'
-search_status_arrival_query =   'SELECT airline_name, flight_num, arrival_datetime AS date, status FROM Flight WHERE airline_name = %s AND flight_num = %s AND arrival_datetime = %s'
+# Searching for Oneway Flights by City Name
+search_oneway_city_query = 'SELECT *' \
+                           'FROM Flight' \
+                           'WHERE depart_datetime > CURRENT_TIMESTAMP ' \
+                           'AND CAST(depart_datetime AS date) = %s' \
+                           'AND depart_airport IN ' \
+                           '(SELECT code FROM Airport WHERE city = %s)' \
+                           'AND arrival_airport IN' \
+                           '(SELECT code FROM Airport WHERE city = %s)'
+
+# Searching for Twoway Flights by Airport Name
+search_twoway_airport_query = 'SELECT *' \
+                              'FROM Flight AS dep, Flight AS ret' \
+                              'WHERE dep.depart_datetime > CURRENT_TIMESTAMP' \
+                              'AND dep.depart_datetime < ret.depart_datetime' \
+                              'AND dep.airline_name = ret.airline_name' \
+                              'AND CAST(dep.depart_datetime AS date) = %s' \
+                              'AND CAST(ret.depart_datetime AS date) = %s' \
+                              'AND dep.depart_airport IN' \
+                              '(SELECT code FROM Airport WHERE name = %s)' \
+                              'AND dep.arrival_airport IN' \
+                              '(SELECT code FROM Airport WHERE name = %s)'
+
+# Searching for Twoway Flights by City Name
+search_twoway_city_query = 'SELECT *' \
+                           'FROM Flight AS dep, Flight AS ret' \
+                           'WHERE dep.depart_datetime > CURRENT_TIMESTAMP ' \
+                           'AND dep.depart_datetime < ret.depart_datetime' \
+                           'AND dep.airline_name = ret.airline_name' \
+                           'AND CAST(dep.depart_datetime AS date) = %s' \
+                           'AND CAST(ret.depart_datetime AS date) = %s' \
+                           'AND dep.depart_airport IN' \
+                           '(SELECT code FROM Airport WHERE city = %s)' \
+                           'AND dep.arrival_airport IN' \
+                           '(SELECT code FROM Airport WHERE city = %s)'
+
+# Searching for Flight Status by Departure Date
+search_status_departure_query = 'SELECT airline_name, flight_num, CAST(depart_datetime AS date) AS date, status FROM Flight WHERE airline_name = %s AND flight_num = %s AND CAST(depart_datetime AS date) = %s'
+
+# Searching for Flight Status by Arrival Date
+search_status_arrival_query =   'SELECT airline_name, flight_num, CAST(arrival_datetime AS date) AS date, status FROM Flight WHERE airline_name = %s AND flight_num = %s AND CAST(arrival_datetime AS date) = %s'
 
 conn = pymysql.connect(host = 'localhost',
                        user = 'root',
