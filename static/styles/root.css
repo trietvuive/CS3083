@@ -38,3 +38,16 @@ img {
     margin: 3px;
     padding: 3px;
 }
+
+.card-align {
+  margin: 0 25px;
+}
+
+.btn-align {
+  position: absolute;
+  bottom: 10px;
+}
+
+.txt-bottom {
+  margin-bottom: 50px;
+}
