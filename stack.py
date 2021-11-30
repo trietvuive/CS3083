@@ -3,7 +3,7 @@ import pymysql
 import hashlib
 import settings
 
-from flask_route.root import root, flights
+from flask_route.root import root, check_status, search_flight
 from flask_route.customer import cust_login, cust_register, cust_home
 from flask_route.staff import staff_login, staff_register, staff_home
 

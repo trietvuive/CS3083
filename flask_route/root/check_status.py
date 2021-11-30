@@ -4,7 +4,7 @@ from settings import *
 import pymysql
 
 @flights.route('/', methods = ['GET', 'POST'])
-def search_flight():
+def check_status():
     if request.method == 'POST':
         airline_name = request.form['AirlineName']
         flight_number = request.form['FlightNumber']

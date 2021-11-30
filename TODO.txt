@@ -1,0 +1,8 @@
+Required: 
+All the cases
+Customer and staff home page
+GET request for case 6: Order flight
+
+Optional:
+Change home page to fancy html + navbar
+
