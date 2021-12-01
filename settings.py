@@ -1,6 +1,9 @@
 import pymysql
 import hashlib
 
+# development mode
+development = True
+
 # store global variables, basically 
 
 cust_log_veri_query = 'SELECT * FROM Customer WHERE email = %s AND pwd = %s'

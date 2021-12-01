@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CS3083 Aiports</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/root.css')}}">
+</head>
+
+<body>
+  <div class="page" style="width:100%; height:100%;">
+
+
+    <h1 style="margin-top: 30px;">CS3083 Airports Project</h1>
+
+    <h2>Flights</h2>
+    
+    <div class="horizontal-container">
+
+      <div class="card card-align" style="width: 30%; padding: 5px; margin-left: auto;">
+        <img src="{{url_for('static',filename='images/search_flight.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Search Flights</h5>
+<<<<<<< HEAD
+          <p class="card-text txt-bottom">Search for future flights based on source city/airport name and more</p>
+          <a href="/flights/search" class="btn btn-primary btn-align">Search</a>
+=======
+          <p class="card-text">Search for future flights based on source city/airport name and more</p>
+          <a href="/flights/search" class="btn btn-primary">Search</a>
+>>>>>>> development
+        </div>
+      </div>
+	  
+	    <div class="card card-align" style="width: 30%; padding: 5px; margin-right: auto;">
+        <img src="{{url_for('static',filename='images/flight_status.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Check Flight Status</h5>
+          <p class="card-text txt-bottom">Check flight status from airline name, flight number and date</p>
+          <a href="/flights" class="btn btn-primary btn-align">Check</a>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>Customers</h2>
+
+    <div class="horizontal-container">
+      
+      <div class="card card-align" style="width: 30%; padding: 5px; margin-left: auto;">
+        <img src="{{url_for('static',filename='images/customer_login.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Customer Login</h5>
+          <p class="card-text txt-bottom">Log in and view your flights, purchase tickets, track your spending and more</p>
+          <a href="/customer/login" class="btn btn-primary btn-align">Login</a>
+        </div>
+      </div>
+    
+      <div class="card card-align" style="width: 30%; padding: 5px; margin-right: auto;">
+        <img src="{{url_for('static',filename='images/customer_register.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Customer Register</h5>
+          <p class="card-text txt-bottom">Register as a new customer to sign up for flights and more</p>
+          <a href="/customer/register" class="btn btn-primary btn-align">Register</a>
+        </div>
+      </div>
+	  
+    </div>
+
+    <h2>Staff</h2>
+
+    <div class="horizontal-container">
+	    
+      <div class="card card-align" style="width: 30%; padding: 5px; margin-left: auto;">
+        <img src="{{url_for('static',filename='images/staff_login.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Staff Login</h5>
+          <p class="card-text txt-bottom">Log in and manage your airline, interact with customers and more</p>
+          <a href="/staff/login" class="btn btn-primary btn-align">Login</a>
+        </div>
+      </div>
+	  
+	    <div class="card card-align" style="width: 30%; padding: 5px; margin-right: auto;">
+        <img src="{{url_for('static',filename='images/staff_register.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Staff Register</h5>
+          <p class="card-text txt-bottom">Register as a new staff member to create new flight and more</p>
+          <a href="/staff/register" class="btn btn-primary btn-align">Register</a>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="footer">
+      <h5 class="footer-ttl">Group Members:</h5>
+      <h6 class="footer-txt">tmv7269 - Triet</h6>
+      <h6 class="footer-txt">mt7212 - Marco</h6>
+      <h6 class="footer-txt">gts286 - Guilherme</h6>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,6 +1,13 @@
-from flask import render_template, Blueprint, request
+from flask import render_template, Blueprint, request, session, redirect, url_for
 from route import customer
 
-@customer.route('/home')
+@customer.route('/')
 def home():
-    return render_template('hello.html', email = request.args.get('name'))
+    if 'customer_email' not in session:
+        return redirect(url_for('customer.login'))
+    return render_template('customer/customer_home.html', email = request.args.get('name'))
+
+@customer.route('/logout')
+def logout():
+    session.pop('customer_email', None)
+    return redirect(url_for('customer.login'))

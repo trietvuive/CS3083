@@ -1,6 +1,14 @@
-from flask import render_template, Blueprint, request
+from flask import render_template, Blueprint, request, session, redirect, url_for
 from route import staff
+from settings import development
 
-@staff.route('/home')
+@staff.route('/')
 def home():
-    return render_template('hello.html', email = request.args.get('name'))
+    if 'staff_username' not in session:
+        return redirect(url_for('staff.login'))
+    return render_template('staff/staff_home.html', email = request.args.get('name'))
+
+@staff.route('/logout')
+def logout():
+    session.pop('staff_username', None)
+    return redirect(url_for('staff.login'))

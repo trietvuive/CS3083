@@ -14,9 +14,10 @@ def login():
         cursor = conn.cursor()
         cursor.execute(staff_log_veri_query, (username, password))
 
+        
         data = cursor.fetchone()
         cursor.close()
-        if not data:
+        if not data and not development:
             error = 'Invalid Credentials...'
         else:
             session['staff_username'] = username
