@@ -22,7 +22,7 @@
           <td>{{ flight.flight_num }}</td>
           <td>{{ flight.date }}</td>
           <td>{{ flight.status }}</td>
-		  <td> <button type="button" style="background:cyan; border:none; color:red;">Order now!</button></td>
+		  <td> <button type="button" style="outline: 0;">Order now!</button></td>
         </tr>
       {% endfor %}
     </tbody>

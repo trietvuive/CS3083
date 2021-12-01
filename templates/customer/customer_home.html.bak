@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/home/home.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/home/home.css')}}">
 </head>
-<body>
+<body background-color = "cyan">
   <h1 style="margin-top: 20px; margin-left: 10px;">Hello, Customer {{email}}</h1>
 
   <div class="list-group list-group-allign">

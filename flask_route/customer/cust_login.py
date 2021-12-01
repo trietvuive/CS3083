@@ -20,7 +20,7 @@ def login():
             error = 'Invalid Credentials...'
         else:
             session['customer_email'] = email
-            return redirect(url_for('customer.home', name = email))
+            return redirect(url_for('customer.home'))
     return render_template('customer/customer_login.html', error = error)
 
 

@@ -21,7 +21,7 @@ def login():
             error = 'Invalid Credentials...'
         else:
             session['staff_username'] = username
-            return redirect(url_for('staff.home', name = username))
+            return redirect(url_for('staff.home'))
     return render_template('staff/staff_login.html', error = error)
 
 

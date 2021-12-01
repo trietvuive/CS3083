@@ -6,7 +6,7 @@ from settings import development
 def home():
     if 'staff_username' not in session:
         return redirect(url_for('staff.login'))
-    return render_template('staff/staff_home.html', email = request.args.get('name'))
+    return render_template('staff/staff_home.html', email = session['staff_username'])
 
 @staff.route('/logout')
 def logout():

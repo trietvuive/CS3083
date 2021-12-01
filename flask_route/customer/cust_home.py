@@ -5,7 +5,7 @@ from route import customer
 def home():
     if 'customer_email' not in session:
         return redirect(url_for('customer.login'))
-    return render_template('customer/customer_home.html', email = request.args.get('name'))
+    return render_template('customer/customer_home.html', email = session['customer_email'])
 
 @customer.route('/logout')
 def logout():
