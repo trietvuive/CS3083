@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import pymysql
 import hashlib
 import settings
@@ -19,6 +19,10 @@ app.register_blueprint(home, url_prefix = '/')
 app.register_blueprint(customer, url_prefix = '/customer')
 app.register_blueprint(flights, url_prefix = '/flights')
 app.register_blueprint(staff, url_prefix = '/staff')
+
+@app.errorhandler(404)
+def invalid_route(e):
+    return render_template('root/404.html')
 
 if __name__ == "__main__":
     #127.0.0.1 is localhost

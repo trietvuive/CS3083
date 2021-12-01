@@ -1,0 +1,44 @@
+<!------ Copyright ------
+Designed by: Emily Feng
+Dribbble: https://dribbble.com/emilyfeng
+Developed by Yago Rocha for educational purpose
+-->
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/form/payment.css') }}">
+<main id='container'>
+	<aside id='info'>
+		<form action = "" method = "post">
+		<label for='paymentMethod'>Payment Method</label>
+			<select name='paymentMethod'>
+				<option>Visa</option>
+                <option>MasterCard</option>
+                <option>Stripe</option>
+            </select>
+
+            <!-- Credit Card Number -->
+            <label for='cardNumber'>Credit Card Number</label>
+            <input type='text' name='cardNumber' required />
+
+            <!-- Credit Card Holder Name -->
+            <label for='cardholderName'>Cardholder Name</label>
+            <input type='text' name='cardholderName' required />
+
+            <!-- Expiration Date -->
+            <label for='cardDate'>Expiration Date</label>
+            <input type='text' name='cardDate' required />
+
+            <!-- CVV Card Number -->
+            <label for='cvv'>CVV</label>
+            <input type='text' name='cvv' required />
+
+            <button type = "submit" id='makePayment'>MAKE A PAYMENT</button>
+		</form>
+        </aside>
+        <aside id='description'>
+          <h2>Airplane Ticket</h2>
+          <h3>{{description}}</h3>
+          <img src="{{url_for('static',filename='images/paper_plane.png')}}" width="150" height="150">
+          <h1>${{price}}</h1>
+          <button id='editOrder'>Edit the Order</button>
+        </aside>
+    </main>
