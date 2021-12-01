@@ -11,30 +11,21 @@ def register():
     error = False
     if request.method == 'POST':
         # get all POST values
-        email = request.form['Email']
-        pwd = md5(request.form['Password'])
-        name = request.form['Name']
-        building_no = request.form['Building Number']
-        add_street = request.form['Address Street']
-        add_city = request.form['Address City']
-        add_state = request.form['Address State']
-        phone_no = request.form['Phone Number']
-        passport_num = request.form['Passport Number']
-        passport_exp = request.form['Passport Expiration']
-        passport_country = request.form['Passport Country']
-        dob = request.form['Date Of Birth']
+        post_tuple = create_POST_tuple(['Email','Password','Name','Building Number',
+                                        'Address Street', 'Address City', 'Address State',
+                                        'Phone Number', 'Passport Number', 'Passport Expiration',
+                                        'Passport Country','Date Of Birth'], request.form)
 
         # cust_reg_veri_query checks if the email is in the Customer table
         cursor = conn.cursor()
-        cursor.execute(cust_reg_veri_query, (email))
+        cursor.execute(cust_reg_veri_query, (request.form['Email']))
         data = cursor.fetchone()
 
         if data:
             status = 'This user already exists'
         else:
             try:
-                cursor.execute(cust_ins_query, (email, pwd, name, building_no, add_street, add_city, add_state,
-                                            phone_no, passport_num, passport_exp, passport_country, dob))
+                cursor.execute(cust_ins_query, post_tuple)
                 conn.commit()
                 status = 'Registered =)'
                 error = False

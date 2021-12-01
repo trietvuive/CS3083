@@ -1,5 +1,4 @@
 {% extends "flight/base.html" %}
-
 {% block content %}
   <table id="data" class="table table-striped">
     <thead>
@@ -30,7 +29,10 @@
           <td>{{ flight.airplane_ID }}</td>
           <td>{{ flight.airplane_airline_name }}</td>
           <td>{{ flight.status }}</td>
-		  <td> <button type="button" style="background:cyan; border:none; color:red;">Order now!</button></td>
+		  <td>		  
+			<a href="{{ url_for("customer.create_order", flight_number = flight.flight_num, airline = flight.airline_name, depart_date = flight.depart_datetime) }}"><input type="submit" value="Order now!"></i></input></a>
+		  </td>
+		  <!--<td> <button type="button" style="background:cyan; border:none; color:red;">Order now!</button></td>-->
         </tr>
       {% endfor %}
     </tbody>
