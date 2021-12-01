@@ -1,0 +1,40 @@
+<html lang="en" dir="ltr">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>َAnimated Register Form</title>
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/form/register.css') }}">
+
+  </head>
+
+  <body background = "{{ url_for('static',filename='images/inside_airport.jpg') }}">
+
+<form class="box" action= "" method="post">
+
+  <h1>Change Flight Status</h1>
+
+  <input type="text" name="Airplane Name" placeholder="Airplane Name" required>
+
+  <input type="text" name="Departure Date" placeholder="Departure Date" required>
+
+  <input type="text" name="Flight Number" placeholder="Flight Number" required>
+  
+  <input type="text" name="Status" placeholder="Status" required>
+  
+  
+  <input type="submit" name="" value="Register">
+  {% if error %}
+	<error_status> {{status}} <status>
+  {% else %}
+	{% if error %}
+		<status> {{status}} <status>
+	{% endif %}
+  {% endif %}
+</form>
+
+
+  </body>
+</html>

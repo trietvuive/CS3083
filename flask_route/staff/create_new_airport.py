@@ -5,8 +5,8 @@ from settings import *
 from route import staff
 
 # Add a new route /customer/register to cust_auth blueprint
-@staff.route('/create_flight', methods = ['GET','POST'])
-def create_flight():
+@staff.route('/create_airport', methods = ['GET','POST'])
+def create_airport():
     if 'staff_username' not in session:
         return redirect(url_for('staff.login'))
     
