@@ -116,11 +116,32 @@ cust_range_flights = 'SELECT * ' \
 # Use Case 6 -- NOT FINISHED OR TESTED
 # Buy a Ticket
 # Figure out sold price
+number_of_seats = 'SELECT num_seats ' \
+                  'FROM Airplane ' \
+                  'WHERE (airline, id) IN ' \
+                  '(SELECT airplane_id, airplane_airline_name ' \
+                  'FROM Flight ' \
+                  'WHERE airline_name = %s AND flight_num = %s AND depart_datetime = %s)'
+
+base_price = 'SELECT base_price FROM Flight WHERE airline_name = %s AND flight_num = %s AND depart_datetime = %s'
+
+tickets_sold = 'SELECT COUNT(id) FROM Ticket WHERE airline = %s AND flight_num = %s AND depart_datetime = %s'
+
+def getSoldPrice(ticketsSold, numberOfSeats, basePrice)
+    if(ticketsSold >= numberOfSeats * 0.75)
+        return basePrice + (basePrice * 1.25)
+    else
+        return basePrice
+
+# Unique ID
+ticket_id = 'SELECT UUID_TO_BIN(UUID())'
 
 # Purchase the Ticket
-cust_purchase_ticket = 'INSERT INTO Ticket VALUES(UUID_TO_BIN(UUID()), sold_price, %s, %s, %s, %s, %s, %s, %s)'
+# id, sold_price, airline, flight_num, depart_datetime, pay_card_type, pay_card_num, pay_name_on_card, pay_card_expiration
+cust_purchase_ticket = 'INSERT INTO Ticket VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
 # Record Purchase (Need to have same ticket id as UUID())
+# cust_email, t_id
 cust_record_purchase = 'INSERT INTO Purchases VALUES(%s, %s, CURRENT_TIMESTAMP)'
 
 # Use Case 7
@@ -313,8 +334,28 @@ staff_revenue_year = 'SELECT SUM(sold_price) ' \
 
 # Use Case 13 -- NOT FINISHED
 # Top 3 Destinations in Last 3 Months
+staff_top_destinations_month = 'SELECT city ' \
+                               'FROM Airport ' \
+                               'WHERE code IN ' \
+                               '(SELECT DISTINCT arrival_airport ' \
+                               'FROM Flight NATURAL JOIN Ticket ' \
+                               'WHERE airline_name = airline ' \
+                               'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -3 MONTH) ' \
+                               'AND CAST(depart_dateime AS date) <= CURDATE() ' \
+                               'GROUP BY arrival_airport ' \
+                                'HAVING COUNT(id) = MAX(COUNT(id)))'
 
 # Top 3 Destinations in Last Year
+staff_top_destinations_year = 'SELECT city ' \
+                              'FROM Airport ' \
+                              'WHERE code IN ' \
+                              '(SELECT DISTINCT arrival_airport ' \
+                              'FROM Flight NATURAL JOIN Ticket ' \
+                              'WHERE airline_name = airline ' \
+                              'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
+                              'AND CAST(depart_dateime AS date) <= CURDATE() ' \
+                              'GROUP BY arrival_airport ' \
+                              'HAVING COUNT(id) = MAX(COUNT(id)))'
 
 def md5(s):
     return hashlib.md5(s.encode()).hexdigest()
