@@ -1,0 +1,38 @@
+{% extends "flight/base.html" %}
+
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Airline Name</th>
+        <th>Flight Number</th>
+		<th>Departure Date</th>
+		<th>Departure Airport</th>
+		<th>Arrival Date</th>
+		<th>Arrival Airport</th>
+		<th>Base Price</th>
+		<th>Airplane ID</th>
+		<th>Airline Name</th>
+        <th>Status</th>
+		<th>Order</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for flight in flights %}
+        <tr>
+          <td>{{ flight.airline_name }}</td>
+          <td>{{ flight.flight_num }}</td>
+          <td>{{ flight.depart_datetime }}</td>
+          <td>{{ flight.depart_airport }}</td>
+          <td>{{ flight.arrival_datetime }}</td>
+          <td>{{ flight.arrival_airport }}</td>
+          <td>{{ flight.base_price }}</td>
+          <td>{{ flight.airplane_ID }}</td>
+          <td>{{ flight.airplane_airline_name }}</td>
+          <td>{{ flight.status }}</td>
+		  <td> <button type="button">Order now!</button></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
