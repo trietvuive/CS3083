@@ -74,4 +74,6 @@ conn = pymysql.connect(host = 'localhost',
 
 def md5(s):
     return hashlib.md5(s.encode()).hexdigest()
+def create_POST_tuple(parameter_list, form):
+    return tuple((form[i] for i in parameter_list))
 

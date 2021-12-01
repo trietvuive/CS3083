@@ -34,7 +34,7 @@
   
   <input type="text" name="Flight Number" placeholder="Flight Number" required>
   
-  <input type="text" name="Status" placeholder="Status" required>
+  <input type="text" name="Status" placeholder="Airplane ID" required>
   
   <input type="submit" name="" value="Register">
   {% if error %}

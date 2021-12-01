@@ -9,10 +9,9 @@ def login():
         return redirect(url_for('staff.home', name = session['staff_username']))
     error = None
     if request.method == 'POST':
-        username = request.form['Username']
-        password = md5(request.form['Password'])
+        post_tuple = create_POST_tuple(['Username','Password'], request.form)
         cursor = conn.cursor()
-        cursor.execute(staff_log_veri_query, (username, password))
+        cursor.execute(staff_log_veri_query, post_tuple)
 
         
         data = cursor.fetchone()
