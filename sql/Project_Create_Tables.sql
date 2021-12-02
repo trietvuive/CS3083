@@ -53,6 +53,8 @@ CREATE TABLE Flight(
             depart_datetime
         ),
         FOREIGN KEY(airline_name) REFERENCES Airline(name),
+        FOREIGN KEY(depart_airport) REFERENCES Airport(code),
+        FOREIGN KEY(arrival_airport) REFERENCES Airport(code),
         FOREIGN KEY(
             airplane_airline_name,
             airplane_ID
