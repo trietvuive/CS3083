@@ -129,20 +129,21 @@ tickets_sold = 'SELECT COUNT(id) FROM Ticket WHERE airline = %s AND flight_num =
 
 def getSoldPrice(ticketsSold, numberOfSeats, basePrice):
     if ticketsSold >= numberOfSeats * 0.75:
-        return basePrice + (basePrice * 1.25)
+        return basePrice * 1.25
     else:
         return basePrice
 
 # Unique ID
-ticket_id = 'SELECT UUID_TO_BIN(UUID())'
+ticket_id = 'SELECT UUID() as id'
 
 # Purchase the Ticket
 # id, sold_price, airline, flight_num, depart_datetime, pay_card_type, pay_card_num, pay_name_on_card, pay_card_expiration
-cust_purchase_ticket = 'INSERT INTO Ticket VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)'
+cust_purchase_ticket = 'INSERT INTO Ticket (airline, depart_datetime, flight_num, ID, pay_card_expiration, pay_card_type, pay_name_on_card, sold_price) ' \
+'VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
 # Record Purchase (Need to have same ticket id as UUID())
 # cust_email, t_id
-cust_record_purchase = 'INSERT INTO Purchases VALUES(%s, %s, CURRENT_TIMESTAMP)'
+cust_record_purchase = 'INSERT INTO Purchases (cust_email, t_id, date_time) VALUES(%s, %s, CURRENT_TIMESTAMP)'
 
 # Use Case 7
 # Add Rating and Comment to a Previous Flight
