@@ -14,26 +14,17 @@ def create_airport():
     error = False
     if request.method == 'POST':
         # get all POST values
-        city = request.form['City']
-        code = request.form['Code']
-        name = request.form['Name']
-
-        # cust_reg_veri_query checks if the email is in the Customer table
+        post_tuple = create_POST_tuple(['City','Code','Name'], request.form)
         cursor = conn.cursor()
-        # query not done yet
-        cursor.execute(staff_reg_veri_query, (username))
-        data = cursor.fetchone()
 
-        if data:
-            status = 'This airport already exists'
-        else:
-            try:
-                cursor.execute(staff_ins_query, (username, pwd, airline, first_name, last_name, dob))
-                conn.commit()
-                status = 'Registered =)'
-                error = False
-            except:
-                status = 'Error...=('
-                error = True
+        try:
+            cursor.execute(staff_ins_airport, post_tuple)
+            conn.commit()
+            status = 'Registered =)'
+            error = False
+        except Exception as e:
+            print(e)
+            status = e
+            error = True
         cursor.close()
     return render_template('staff/create_airport.html', status = status, error = error)

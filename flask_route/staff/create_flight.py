@@ -21,19 +21,13 @@ def create_flight():
         verify_tuple = create_POST_tuple(['Airline', 'Departure Date', 'Flight Number'], request.form)
         
         cursor = conn.cursor()
-        # cursor.execute(staff_reg_veri_query, (username))
-        data = cursor.fetchone()
-
-        if data:
-            status = 'This airport already exists'
-        else:
-            try:
-                # cursor.execute(staff_ins_query, (username, pwd, airline, first_name, last_name, dob))
-                conn.commit()
-                status = 'Registered =)'
-                error = False
-            except:
-                status = 'Error...=('
-                error = True
+        try:
+            cursor.execute(staff_ins_query, insert_post_tuple)
+            conn.commit()
+            status = 'Registered =)'
+            error = False
+        except:
+            status = 'Error...=('
+            error = True
         cursor.close()
     return render_template('staff/create_flight.html', status = status, error = error)

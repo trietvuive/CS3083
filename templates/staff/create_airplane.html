@@ -16,17 +16,17 @@
 
   <h1>Add New Airplane</h1>
 
-  <input type="text" name="Airline" placeholder="Airline" required>
+  <input type="text" name="Airline Name" placeholder="Airline Name" required>
 
   <input type="text" name="ID" placeholder="ID" required>
 
-  <input type="text" name="Airplane Number" placeholder="Airplane Number" required>
+  <input type="text" name="Number Of Seats" placeholder="Number Of Seats" required>
   
   <input type="submit" name="" value="Register">
   {% if error %}
 	<error_status> {{status}} <status>
   {% else %}
-	{% if error %}
+	{% if status %}
 		<status> {{status}} <status>
 	{% endif %}
   {% endif %}

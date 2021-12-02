@@ -230,7 +230,7 @@ staff_upd_status = 'UPDATE Flight SET status = %s WHERE airline_name = %s AND fl
 # Use Case 7
 # Add Airplane
 # airline, id, num_seats
-staff_ins_airplane = 'INSERT INTO Airplane VALUES(%s, %s, %i)'
+staff_ins_airplane = 'INSERT INTO Airplane (airline, ID, num_seats) VALUES(%s, %s, %s)'
 
 # Show All Airplanes Owned by Staff's Airline (Confirmation Page)
 staff_show_airplanes = 'SELECT id, num_seats FROM Airplane NATURAL JOIN AirlineStaff WHERE username = %s'
@@ -238,7 +238,7 @@ staff_show_airplanes = 'SELECT id, num_seats FROM Airplane NATURAL JOIN AirlineS
 # Use Case 8
 # Add Airport
 # code, name, city
-staff_ins_airport = 'INSERT INTO Airport VALUES(%s, %s, %s)'
+staff_ins_airport = 'INSERT INTO Airport (city, code, name) VALUES(%s, %s, %s)'
 
 # Use Case 9
 # Average Rating for a Flight

@@ -10,9 +10,14 @@ from datetime import datetime
 def view_flights():
     if 'customer_email' not in session:
         return redirect(url_for('customer.login'))
-    
+
+    cursor = conn.cursor()
+    customer_email = session['customer_email']
     if request.method == 'POST':
         from_date = datetime.strptime(request.form['From'],'%m/%d/%Y').strftime('%Y-%m-%d')
         to_date = datetime.strptime(request.form['To'],'%m/%d/%Y').strftime('%Y-%m-%d')
-        print(from_date, to_date)
-    return render_template('flight/view_flight_table.html')
+        cursor.execute(cust_range_flights, (customer_email, from_date, to_date))
+    else:
+        cursor.execute(cust_future_flights, (customer_email))
+    records = cursor.fetchall()
+    return render_template('flight/view_flight_table.html', flights = records)

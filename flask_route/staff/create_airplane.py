@@ -14,25 +14,16 @@ def create_airplane():
     error = False
     if request.method == 'POST':
         # get all POST values
-        airline = request.form['Airline']
-        ID = request.form['ID']
-        airplane_number = request.form['Airplane Number']
-
-
+        post_tuple = create_POST_tuple(['Airline Name','ID','Number Of Seats'], request.form)
         cursor = conn.cursor()
-        cursor.execute(staff_reg_veri_query, (username))
-        data = cursor.fetchone()
-
-        if data:
-            status = 'This airport already exists'
-        else:
-            try:
-                cursor.execute(staff_ins_query, (username, pwd, airline, first_name, last_name, dob))
-                conn.commit()
-                status = 'Registered =)'
-                error = False
-            except:
-                status = 'Error...=('
-                error = True
+        
+        try:
+            cursor.execute(staff_ins_airplane, post_tuple)
+            conn.commit()
+            status = 'Registered =)'
+            error = False
+        except Exception as e:
+            status = e
+            error = True
         cursor.close()
     return render_template('staff/create_airplane.html', status = status, error = error)

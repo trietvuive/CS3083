@@ -22,6 +22,7 @@ def search_flight():
         else:
             cursor.execute(search_twoway_airport_query, (depart_date, return_date, source, destination))
         records = cursor.fetchall()
+        cursor.close()
         return render_template('flight/flights_table.html', flights = records)
     return render_template('flight/search_flights.html')
 
