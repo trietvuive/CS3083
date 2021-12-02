@@ -218,7 +218,9 @@ staff_show_customers = 'SELECT email, name ' \
 # airline_name, flight_num, depart_datetime, depart_airport,
 # arrival_datetime, arrival_airport, base_price, airplane_id,
 # airplane_airline_name, status
-staff_ins_flight = 'INSERT INTO Flight VALUES(%s, %s, %s, %s, %s, %s, %d, %s, %s, %s)'
+staff_ins_flight = 'INSERT INTO Flight (airline_name, airplane_airline_name, airplane_ID, arrival_airport, ' \
+'arrival_datetime, base_price, depart_airport, depart_datetime, flight_num, status) ' \
+'VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
 # Show Flights Operated by Staff's Airline for Next 30 Days (Confirmation Page)
 # Use staff_show_flights_30days
