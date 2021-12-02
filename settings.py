@@ -127,10 +127,10 @@ base_price = 'SELECT base_price FROM Flight WHERE airline_name = %s AND flight_n
 
 tickets_sold = 'SELECT COUNT(id) FROM Ticket WHERE airline = %s AND flight_num = %s AND depart_datetime = %s'
 
-def getSoldPrice(ticketsSold, numberOfSeats, basePrice)
-    if(ticketsSold >= numberOfSeats * 0.75)
+def getSoldPrice(ticketsSold, numberOfSeats, basePrice):
+    if ticketsSold >= numberOfSeats * 0.75:
         return basePrice + (basePrice * 1.25)
-    else
+    else:
         return basePrice
 
 # Unique ID
