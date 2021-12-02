@@ -14,13 +14,16 @@
 
 <form class="box" action= "" method="post">
 
-  <h1>Add New Airplane</h1>
+  <h1>Change Flight Status</h1>
 
   <input type="text" name="Airline Name" placeholder="Airline Name" required>
 
-  <input type="text" name="ID" placeholder="ID" required>
+  <input type="text" name="Departure Date" placeholder="Departure Date" required>
 
-  <input type="text" name="Number Of Seats" placeholder="Number Of Seats" required>
+  <input type="text" name="Flight Number" placeholder="Flight Number" required>
+  
+  <input type="text" name="Status" placeholder="Status" required>
+  
   
   <input type="submit" name="" value="Register">
   {% if error %}

@@ -15,7 +15,7 @@ def change_flight_status():
     if request.method == 'POST':
         # get all POST values
         post_tuple = create_POST_tuple(['Status','Airline Name',
-                                        'Departure Date','Flight Number'], request.form)
+                                        'Flight Number','Departure Date'], request.form)
         
 
         cursor = conn.cursor()
