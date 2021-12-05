@@ -150,7 +150,9 @@ cust_record_purchase = 'INSERT INTO Purchases (cust_email, t_id, date_time) VALU
 # Info needs to be added to Takes at some point
 # No comment or rating initially
 # cust_email, flight_airline, flight_num, flight_depart_datetime
-cust_ins_takes = 'INSERT INTO Takes VALUES(%s, %s, %s, %s, NULL, NULL)'
+cust_ins_takes = 'INSERT INTO Takes (comment, rating, cust_email, '\
+'flight_airline, flight_num, flight_depart_datetime ' \
+'VALUES(%s, %s, %s, %s, NULL, NULL)'
 
 cust_rate_comment = 'UPDATE Takes ' \
                     'SET comment = %s, rating = %i ' \

@@ -30,13 +30,13 @@
 
   <input type="text" name="Address Street" placeholder="Address Street" required>
 
-  <input type="text" name="Date Of Birth" placeholder="Date Of Birth" required>
+  <input type="date" name="Date Of Birth" placeholder="Date Of Birth" required>
   
   <input type="number" name="Passport Number" placeholder="Passport Number" required>
 
   <input type="text" name="Passport Country" placeholder="Passport Country" required>
   
-  <input type="text" name="Passport Expiration" placeholder="Passport Expiration" required>
+  <input type="date" name="Passport Expiration" placeholder="Passport Expiration" required>
   
   <input type="number" name="Phone Number" placeholder="Phone Number" required>
   

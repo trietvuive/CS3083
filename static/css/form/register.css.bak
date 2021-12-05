@@ -98,7 +98,7 @@ body
 }
 
 textarea{
-	width: 400px;
+	width: 300px;
 }
 
 .box input[type = "text"]:focus,.box input[type = "password"]:focus, .box input[type = "number"]:focus, .box input[type = "date"]:focus

@@ -19,7 +19,7 @@ def login():
         if not data and not development:
             error = 'Invalid Credentials...'
         else:
-            session['staff_username'] = username
+            session['staff_username'] = post_tuple[0]
             return redirect(url_for('staff.home'))
     return render_template('staff/staff_login.html', error = error)
 
