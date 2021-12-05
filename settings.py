@@ -159,6 +159,12 @@ cust_rate_comment = 'UPDATE Takes ' \
                     'WHERE cust_email = %s AND flight_airline = %s ' \
                     'AND flight_num = %s AND flight_depart_datetime = %s'
 
+# Verify if a customer has taken a flight
+cust_takes_veri = 'SELECT * ' \
+                  'FROM Takes ' \
+                  'WHERE cust_email = %s AND flight_airline = %s ' \
+                  'AND flight_num = %s AND flight_depart_datetime = %s'
+
 # Use Case 8
 # Total Spent in Past Year
 cust_spent_year = 'SELECT SUM(sold_price) ' \

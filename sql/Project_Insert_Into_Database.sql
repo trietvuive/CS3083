@@ -190,3 +190,34 @@ VALUES(
     "6370182746",
     "2021-11-06 00:32:15"
 );
+
+# INSERT TO TAKES FOR TESTING PURPOSES
+INSERT INTO Takes 
+VALUES(
+	'triet.vo@nyu.edu', 
+	'China Eastern', 
+	'38419', 
+	'2021-12-12 05:30:00', 
+	NULL, 
+	NULL
+);
+
+INSERT INTO Takes 
+VALUES(
+	'triet.vo@nyu.edu', 
+	'China Eastern', 
+	'45678', 
+	'2021-12-12 23:45:00', 
+	NULL, 
+	NULL
+);
+
+INSERT INTO Takes 
+VALUES(
+	'triet.vo@nyu.edu', 
+	'China Eastern', 
+	'98765', 
+	'2021-12-13 20:00:00', 
+	NULL, 
+	NULL
+);
