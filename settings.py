@@ -194,6 +194,11 @@ cust_spent_monthly_range = 'SELECT YEAR(date_time), MONTHNAME(date_time), SUM(so
 # -------------------------------------------- Staff Use Cases -----------------------------------------------
 # NO USE CASES TESTED
 
+# Get a Staff's Airline
+staff_airline = 'SELECT airline ' \
+                'FROM AirlineStaff ' \
+                'WHERE username = %s'
+
 # Use Case 4
 # Show All Future Flights Operated by Staff's Airline in Next 30 Days (DEFAULT)
 staff_show_flights_30days = 'SELECT * FROM Flight ' \
