@@ -260,10 +260,9 @@ staff_ins_airport = 'INSERT INTO Airport (city, code, name) VALUES(%s, %s, %s)'
 
 # Use Case 9
 # Average Rating for a Flight
-staff_show_avg_rating = 'SELECT flight_airline, flight_num, flight_depart_datetime, AVG(rating) AS Average Rating ' \
+staff_show_avg_rating = 'SELECT flight_airline, flight_num, flight_depart_datetime, AVG(rating) AS avg ' \
                         'FROM Takes ' \
-                        'WHERE flight_airline = %s AND flight_num = %s ' \
-                        'AND flight_depart_datetime = %s ' \
+                        'WHERE flight_airline = %s '\
                         'GROUP BY flight_airline, flight_num, flight_depart_datetime'
 
 # Ratings and Comments for a Flight

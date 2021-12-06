@@ -5,7 +5,8 @@ import settings
 
 from flask_route.root import root, check_status, search_flight
 from flask_route.customer import cust_login, cust_register, cust_home, create_order, view_flights, add_comment, track_spending
-from flask_route.staff import staff_login, staff_register, staff_home, create_new_airport, change_flight_status, create_airplane, create_flight, view_flights
+from flask_route.staff import staff_login, staff_register, staff_home, create_new_airport, change_flight_status
+from flask_route.staff import create_airplane, create_flight, view_flights, view_avg_rating
 from route import *
 
 # we'll split the big Flask file into smaller files using Blueprint

@@ -4,7 +4,6 @@ import hashlib
 from settings import *
 from route import staff
 
-# Add a new route /customer/register to cust_auth blueprint
 @staff.route('/create_flight', methods = ['GET','POST'])
 def create_flight():
     if 'staff_username' not in session:

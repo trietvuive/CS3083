@@ -1,0 +1,21 @@
+{% extends "flight/base.html" %}
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Comment</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+        <tr>
+          <td>{{ customer.cust_email }}</td>
+          <td>{{ customer.comment }}</td>
+          <td>{{ customer.rating }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

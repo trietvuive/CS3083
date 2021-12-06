@@ -1,0 +1,29 @@
+{% extends "flight/base.html" %}
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Airline Flight</th>
+        <th>Flight Number</th>
+		<th>Departure Time</th>
+		<th>Average Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for flight in flights %}
+        <tr>
+          <td>{{ flight.flight_airline }}</td>
+          <td>
+			<a href={{url_for("staff.view_customer_review", flight_number = flight.flight_num, depart_date = flight.flight_depart_datetime)}}>
+				<div style="height:100%;width:100%">
+					{{ flight.flight_num }}
+				</div>
+			</a>
+		  </td>
+          <td>{{ flight.flight_depart_datetime }}</td>
+          <td>{{ flight.avg }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

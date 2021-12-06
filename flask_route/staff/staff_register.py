@@ -4,7 +4,6 @@ import hashlib
 from settings import *
 from route import staff
 
-# Add a new route /customer/register to cust_auth blueprint
 @staff.route('/register', methods = ['GET','POST'])
 def register():
     status = None

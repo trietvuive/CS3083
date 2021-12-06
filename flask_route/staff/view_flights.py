@@ -35,5 +35,6 @@ def view_particular_flight():
     cursor = conn.cursor()
     cursor.execute(staff_show_customers, (airline_name, flight_num, depart_date))
     customers = cursor.fetchall()
+    print(customers)
     
     return render_template('flight/customer_table.html', customers = customers)
