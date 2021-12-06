@@ -9,7 +9,7 @@ development = True
 conn = pymysql.connect(host = 'localhost',
                        user = 'root',
                        password = 'trietrie',
-                       db='CS_3083',
+                       db='CS3083',
                        charset = 'utf8mb4',
                        cursorclass = pymysql.cursors.DictCursor)
 
@@ -162,15 +162,15 @@ cust_ins_takes = 'INSERT INTO Takes (comment, rating, cust_email, '\
 'VALUES(%s, %s, %s, %s, NULL, NULL)'
 
 cust_rate_comment = 'UPDATE Takes ' \
-                    'SET comment = %s, rating = %i ' \
+                    'SET comment = %s, rating = %s ' \
                     'WHERE cust_email = %s AND flight_airline = %s ' \
-                    'AND flight_num = %s AND flight_depart_datetime = %s'
+                    'AND flight_num = %s AND CAST(flight_depart_datetime AS DATE) = %s'
 
 # Verify if a customer has taken a flight
 cust_takes_veri = 'SELECT * ' \
                   'FROM Takes ' \
                   'WHERE cust_email = %s AND flight_airline = %s ' \
-                  'AND flight_num = %s AND flight_depart_datetime = %s'
+                  'AND flight_num = %s AND CAST(flight_depart_datetime AS DATE) = %s'
 
 # Use Case 8
 # Total Spent in Past Year
@@ -277,19 +277,19 @@ staff_show_ratings_comments = 'SELECT cust_email, comment, rating ' \
 # Input is airline twice
 staff_show_freq_customer = 'SELECT cust_email, times ' \
                            'FROM (SELECT cust_email, COUNT(cust_email) as times ' \
-                                  'FROM Takes ' \
-                                  'WHERE flight_airline = %s ' \
-                                  'AND CAST(flight_depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
-                                  'AND CAST(flight_depart_datetime AS date) <= CURDATE() ' \
-                                  'GROUP BY cust_email) AS t' \
+                           'FROM Takes ' \
+                           'WHERE flight_airline = %s ' \
+                           'AND CAST(flight_depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
+                           'AND CAST(flight_depart_datetime AS date) <= CURDATE() ' \
+                           'GROUP BY cust_email) AS t' \
                            'WHERE times IN( ' \
-                                  'SELECT MAX(times) ' \
-                                  'FROM (SELECT cust_email, COUNT(cust_email) as times ' \
-                                        'FROM Takes ' \
-                                        'WHERE flight_airline = %s ' \
-                                        'AND CAST(flight_depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
-                                        'AND CAST(flight_depart_datetime AS date) <= CURDATE() ' \
-                                        'GROUP BY cust_email) AS s)'
+                           'SELECT MAX(times) ' \
+                           'FROM (SELECT cust_email, COUNT(cust_email) as times ' \
+                           'FROM Takes ' \
+                           'WHERE flight_airline = %s ' \
+                           'AND CAST(flight_depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
+                           'AND CAST(flight_depart_datetime AS date) <= CURDATE() ' \
+                           'GROUP BY cust_email) AS s)'
 
 # View All Flights a Customer Has Taken on Airline
 staff_show_customer_flights = 'SELECT flight_num, flight_depart_datetime ' \
@@ -313,7 +313,7 @@ staff_monthwise_tickets_sold = 'SELECT YEAR(date_time), MONTHNAME(date_time), CO
                                'WHERE id = t_id ' \
                                'AND CAST(date_time AS date) >= %s ' \
                                'AND CAST(date_time AS date) <= %s ' \
-                               'AND airline = %s '
+                               'AND airline = %s ' \
                                'GROUP BY YEAR(date_time), MONTHNAME(date_time) ' \
                                'ORDER BY YEAR(date_time), MONTHNAME(date_time)'
 
@@ -344,39 +344,39 @@ staff_revenue_year = 'SELECT SUM(sold_price) ' \
 staff_top_destinations_month = 'SELECT city ' \
                                'FROM Airport ' \
                                'WHERE code IN( ' \
-                                      'SELECT arrival_airport ' \
-                                      'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
-                                             'FROM Flight NATURAL JOIN Ticket ' \
-                                             'WHERE airline_name = %s AND airline_name = airline ' \
-                                             'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -3 MONTH) ' \
-                                             'AND CAST(depart_datetime AS date) <= CURDATE() ' \
-                                             'GROUP BY arrival_airport) AS t ' \
-                                      'WHERE visitors IN( ' \
-                                             'SELECT MAX(visitors) ' \
-                                             'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
-                                                   'FROM Flight NATURAL JOIN Ticket ' \
-                                                   'WHERE airline_name = %s AND airline_name = airline ' \
-                                                   'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -3 MONTH) ' \
-                                                   'AND CAST(depart_datetime AS date) <= CURDATE() ' \
-                                                   'GROUP BY arrival_airport) AS t))'
+                               'SELECT arrival_airport ' \
+                               'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
+                               'FROM Flight NATURAL JOIN Ticket ' \
+                               'WHERE airline_name = %s AND airline_name = airline ' \
+                               'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -3 MONTH) ' \
+                               'AND CAST(depart_datetime AS date) <= CURDATE() ' \
+                               'GROUP BY arrival_airport) AS t ' \
+                               'WHERE visitors IN( ' \
+                               'SELECT MAX(visitors) ' \
+                               'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
+                               'FROM Flight NATURAL JOIN Ticket ' \
+                               'WHERE airline_name = %s AND airline_name = airline ' \
+                               'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -3 MONTH) ' \
+                               'AND CAST(depart_datetime AS date) <= CURDATE() ' \
+                               'GROUP BY arrival_airport) AS t))'
 
 # Top Destination in Last Year
 staff_top_destinations_year = 'SELECT city ' \
-                               'FROM Airport ' \
-                               'WHERE code IN( ' \
-                                      'SELECT arrival_airport ' \
-                                      'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
-                                             'FROM Flight NATURAL JOIN Ticket ' \
-                                             'WHERE airline_name = %s AND airline_name = airline ' \
-                                             'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
-                                             'AND CAST(depart_datetime AS date) <= CURDATE() ' \
-                                             'GROUP BY arrival_airport) AS t ' \
-                                      'WHERE visitors IN( ' \
-                                             'SELECT MAX(visitors) ' \
-                                             'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
-                                                   'FROM Flight NATURAL JOIN Ticket ' \
-                                                   'WHERE airline_name = %s AND airline_name = airline ' \
-                                                   'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
-                                                   'AND CAST(depart_datetime AS date) <= CURDATE() ' \
-                                                   'GROUP BY arrival_airport) AS t))'
+                              'FROM Airport ' \
+                              'WHERE code IN( ' \
+                              'SELECT arrival_airport ' \
+                              'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
+                              'FROM Flight NATURAL JOIN Ticket ' \
+                              'WHERE airline_name = %s AND airline_name = airline ' \
+                              'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
+                              'AND CAST(depart_datetime AS date) <= CURDATE() ' \
+                              'GROUP BY arrival_airport) AS t ' \
+                              'WHERE visitors IN( ' \
+                              'SELECT MAX(visitors) ' \
+                              'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
+                              'FROM Flight NATURAL JOIN Ticket ' \
+                              'WHERE airline_name = %s AND airline_name = airline ' \
+                              'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
+                              'AND CAST(depart_datetime AS date) <= CURDATE() ' \
+                              'GROUP BY arrival_airport) AS t))'
 

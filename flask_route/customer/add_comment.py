@@ -18,23 +18,26 @@ def add_comment():
         airline = request.form['Flight Airline']
         flight_num = request.form['Flight Number']
         rating = request.form['Rating']
-        departure_date = request.form['Departure Date']
+        review = request.form['Review']
+        depart = request.form['Departure Date']
         
         # cust_reg_veri_query checks if the email is in the Customer table
         cursor = conn.cursor()
-        cursor.execute(cust_reg_veri_query, (request.form['Email']))
+        cursor.execute(cust_takes_veri, (email, airline, flight_num, depart))
         data = cursor.fetchone()
-
-        if data:
-            status = 'This user already exists'
+        print("Preparing...")
+        if not data:
+            error = True
+            status = "No records found..."
         else:
             try:
-                cursor.execute(cust_ins_query, post_tuple)
+                cursor.execute(cust_rate_comment, (review, rating, email, airline, flight_num, depart))
                 conn.commit()
-                status = 'Registered =)'
+                status = 'Thanks for your feedback =)'
                 error = False
-            except:
-                status = 'Error...=('
+            except Exception as e:
+                print(e)
+                status = e
                 error = True
         cursor.close()
     return render_template('customer/add_comment.html', status = status, error = error)

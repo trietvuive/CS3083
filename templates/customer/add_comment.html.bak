@@ -22,7 +22,7 @@
   
   <input type="number" min="0" max = "100" name="Rating" placeholder="Rating" required>
   
-  <input type="date" name="Departure Date" placeholder="Departure Date" required>
+  <input type="text" name="Departure Date" placeholder="Departure Date" required>
   
   <textarea name="Review" rows = "3" cols = "100" required>
   </textarea>
