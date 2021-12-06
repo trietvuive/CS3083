@@ -20,6 +20,7 @@ def view_flights():
     else:
         cursor.execute(staff_show_flights_30days, (airline_name))
     records = cursor.fetchall()
+    cursor.close()
     print(records)
     return render_template('flight/view_flight_table_staff.html', flights = records)
 
@@ -27,4 +28,12 @@ def view_flights():
 def view_particular_flight():
     if 'staff_username' not in session:
         return redirect(url_for('staff.login'))
-    return render_template('flight/customer_table.html')
+
+    flight_num = request.args['flight_number']
+    depart_date = request.args['depart_date']
+    airline_name = session['staff_airline']
+    cursor = conn.cursor()
+    cursor.execute(staff_show_customers, (airline_name, flight_num, depart_date))
+    customers = cursor.fetchall()
+    
+    return render_template('flight/customer_table.html', customers = customers)

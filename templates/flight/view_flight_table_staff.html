@@ -57,7 +57,7 @@ $('input').dateDropper({
         <tr>
           <td>{{ flight.airline_name }}</td>
           <td>
-			<a href={{url_for("staff.view_particular_flight", flight_number = flight.flight_num)}}>
+			<a href={{url_for("staff.view_particular_flight", flight_number = flight.flight_num, depart_date = flight.depart_datetime)}}>
 				<div style="height:100%;width:100%">
 					{{ flight.flight_num }}
 				</div>
