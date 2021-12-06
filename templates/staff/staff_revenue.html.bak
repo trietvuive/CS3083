@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" class="u-responsive-xl"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style type="text/css" id="dark-mode-custom-style" lang="en"></style><style type="text/css" id="dark-mode-native-style" lang="en"></style>
+<head>
+    <title>View Reports</title>
+    <script class="u-script" type="text/javascript" src="{{url_for('static',filename='js/jquery-1.js')}}" defer="defer"></script>
+    <script class="u-script" type="text/javascript" src="{{url_for('static',filename='js/nicepage.js') }}" defer="defer"></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="{{url_for('static',filename='css/staff_revenue/staff_revenue.css')}}">
+</head>
+<body class="u-body" data-new-gr-c-s-check-loaded="8.891.0" data-gr-ext-installed="">
+    
+    <section class="u-align-center u-clearfix u-section-2" id="carousel_8868">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-xl u-sheet-1">
+        <h2 class="u-custom-font u-font-titillium-web u-text u-text-1">About Your Airline</h2>
+        <div class="u-expanded-width-sm u-expanded-width-xs u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-align-center u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-shape-rectangle u-list-item-1">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+                <div class="u-border-15 u-border-palette-1-base u-expanded-width u-line u-line-horizontal u-line-1"></div>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-3" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000" style="will-change: contents;">{{year}}</h3>
+                <p class="u-text u-text-4">Last Year's Revenue</p>
+                <p class="u-text u-text-5">The total revenue your airline collected last year is ${{year}}</p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-shape-rectangle u-list-item-2">
+              <div class="u-container-layout u-similar-container u-container-layout-2">
+                <div class="u-border-15 u-border-palette-1-base u-expanded-width u-line u-line-horizontal u-line-2"></div>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-6" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000" style="will-change: contents;">{{month}}</h3>
+                <p class="u-text u-text-7">Last Month's Revenue</p>
+                <p class="u-text u-text-8">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</body>

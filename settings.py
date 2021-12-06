@@ -300,7 +300,7 @@ staff_show_customer_flights = 'SELECT flight_num, flight_depart_datetime ' \
 # Use Case 11
 # View Reports
 # Total Amount of Tickets Sold in Range of Dates
-staff_total_tickets_sold = 'SELECT COUNT(t_id) ' \
+staff_total_tickets_sold = 'SELECT COUNT(t_id) AS count ' \
                            'FROM Ticket, Purchases ' \
                            'WHERE id = t_id ' \
                            'AND CAST(date_time AS date) >= %s ' \
@@ -320,7 +320,7 @@ staff_monthwise_tickets_sold = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_t
 # Use Case 12
 # View Earnings
 # Revenue of Ticket Sales in Last Month
-staff_revenue_month = 'SELECT SUM(sold_price) ' \
+staff_revenue_month = 'SELECT SUM(sold_price) AS sum ' \
                       'FROM Ticket, Purchases ' \
                       'WHERE t_id = id ' \
                       'AND CAST(date_time AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 MONTH) ' \
@@ -328,15 +328,12 @@ staff_revenue_month = 'SELECT SUM(sold_price) ' \
                       'AND airline = %s'
 
 # Revenue of Ticket Sales in Last Year
-staff_revenue_year = 'SELECT SUM(sold_price) ' \
+staff_revenue_year = 'SELECT SUM(sold_price) AS sum ' \
                      'FROM Ticket, Purchases ' \
                      'WHERE t_id = id ' \
                      'AND CAST(date_time AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
                      'AND CAST(date_time AS date) <= CURDATE() ' \
-                     'AND airline IN ' \
-                     '(SELECT airline ' \
-                     'FROM AirlineStaff ' \
-                     'WHERE username = %s)'
+                     'AND airline = %s'
 
 # Use Case 13
 # Input is airline twice

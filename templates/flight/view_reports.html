@@ -34,7 +34,10 @@ $('input').dateDropper({
 		</div>
 	</div>
 	</form>
-	
+{% if sum %}
+<b style = "margin: auto 80px"> Total Tickets Sold: {{sum}} </b>
+{% endif %}
+
 {% extends "flight/customer_base.html" %}
 {% block content %}
 	<table id="data" class="table table-striped">
