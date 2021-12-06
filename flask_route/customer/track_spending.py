@@ -22,7 +22,7 @@ def track_spending():
     if request.method == 'POST':
         from_date = datetime.datetime.strptime(request.form['From'],'%m/%d/%Y').strftime('%Y-%m-%d')
         to_date = datetime.datetime.strptime(request.form['To'],'%m/%d/%Y').strftime('%Y-%m-%d')
-        cursor.execute(cust_range_flights, (customer_email, from_date, to_date))
+        cursor.execute(cust_spent_monthly_range, (customer_email, from_date, to_date))
     else:
         cursor.execute(cust_spent_monthly_sixmonths, (customer_email))
     records = cursor.fetchall()

@@ -281,7 +281,7 @@ staff_show_freq_customer = 'SELECT cust_email, times ' \
                            'WHERE flight_airline = %s ' \
                            'AND CAST(flight_depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
                            'AND CAST(flight_depart_datetime AS date) <= CURDATE() ' \
-                           'GROUP BY cust_email) AS t' \
+                           'GROUP BY cust_email) AS t ' \
                            'WHERE times IN( ' \
                            'SELECT MAX(times) ' \
                            'FROM (SELECT cust_email, COUNT(cust_email) as times ' \

@@ -4,18 +4,24 @@
     <thead>
       <tr>
         <th>Email</th>
-        <th>Comment</th>
-        <th>Rating</th>
+        <th>Time Flown</th>
       </tr>
     </thead>
     <tbody>
-      {% for review in reviews %}
+      {% for customer in customers %}
         <tr>
+			<td>
+				<a href={{url_for("staff.view_customer", cust_email = customer.cust_email)}}>
+					<div style="height:100%;width:100%">
+						{{ customer.cust_email }}
+					</div>
+				</a>
+			</td>
           <td>{{ customer.cust_email }}</td>
-          <td>{{ customer.comment }}</td>
-          <td>{{ customer.rating }}</td>
+          <td>{{ customer.times }}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
+  
 {% endblock %}

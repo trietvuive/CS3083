@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Finding Customer</title>
+<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+
+<script type='text/Javascript'>$(document).ready(function(){
+$('input').dateDropper({
+});
+});
+</script>
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/customer/view_flight.css') }}">
+
+</head>
+	<body oncontextmenu='return false' class='snippet-body'>
+
+	<form action = "./" method = "get">
+	<div class="container mt-100">
+		<div class="card">
+			<div class="row">
+				<div class="col-md-4"> <label>Customer Email</label> <input name = "cust_email" placeholder="pikachu@gmail.com" type="text" data-dd-opt-format="mm-dd-y" class="form-control" > </div>
+				<div class="col-md-4"> <label>Search</label> <button type = "submit" class="btn btn-primary pro-button w-100">Find Customer<i class="fa fa-plane ml-2"></i></button> </div>
+				
+			</div>
+		</div>
+	</div>
+	</form>
+	
+{% extends "flight/customer_base.html" %}
+{% block content %}
+	<table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Flight Number</th>
+		<th>Departure Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for flight in flights %}
+        <tr>
+          <td>
+			<a href={{url_for("staff.view_particular_flight", flight_number = flight.flight_num, depart_date = flight.flight_depart_datetime)}}>
+				<div style="height:100%;width:100%">
+					{{ flight.flight_num }}
+				</div>
+			</a>
+		  </td>
+          <td>{{ flight.flight_depart_datetime }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  
+ 
+{% endblock %}
+
+
+	</body>
+
+</html>
