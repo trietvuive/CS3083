@@ -35,7 +35,7 @@ Developed by Yago Rocha for educational purpose
 		</form>
         </aside>
         <aside id='description'>
-          <h1>{{status}}</h1>
+          <h1></h1>
           <h2>Airplane Ticket</h2>
           <h3>{{description}}</h3>
           <img src="{{url_for('static',filename='images/paper_plane.png')}}" width="150" height="150">

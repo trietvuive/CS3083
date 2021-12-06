@@ -126,13 +126,13 @@ cust_range_flights = 'SELECT * ' \
 number_of_seats = 'SELECT num_seats ' \
                   'FROM Airplane ' \
                   'WHERE (airline, id) IN ' \
-                  '(SELECT airplane_id, airplane_airline_name ' \
+                  '(SELECT  airplane_airline_name, airplane_id ' \
                   'FROM Flight ' \
                   'WHERE airline_name = %s AND flight_num = %s AND depart_datetime = %s)'
 
 base_price = 'SELECT base_price FROM Flight WHERE airline_name = %s AND flight_num = %s AND depart_datetime = %s'
 
-tickets_sold = 'SELECT COUNT(id) FROM Ticket WHERE airline = %s AND flight_num = %s AND depart_datetime = %s'
+tickets_sold = 'SELECT COUNT(id) AS ticket FROM Ticket WHERE airline = %s AND flight_num = %s AND depart_datetime = %s'
 
 def getSoldPrice(ticketsSold, numberOfSeats, basePrice):
     if ticketsSold >= numberOfSeats * 0.75:
@@ -145,21 +145,22 @@ ticket_id = 'SELECT UUID() as id'
 
 # Purchase the Ticket
 # id, sold_price, airline, flight_num, depart_datetime, pay_card_type, pay_card_num, pay_name_on_card, pay_card_expiration
-cust_purchase_ticket = 'INSERT INTO Ticket (airline, depart_datetime, flight_num, ID, pay_card_expiration, pay_card_type, pay_name_on_card, sold_price) ' \
+cust_purchase_ticket = 'INSERT INTO Ticket (ID, sold_price, airline, flight_num, depart_datetime, pay_card_type, pay_card_num, pay_name_on_card, pay_card_expiration) ' \
 'VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
 # Record Purchase (Need to have same ticket id as UUID())
 # cust_email, t_id
 cust_record_purchase = 'INSERT INTO Purchases (cust_email, t_id, date_time) VALUES(%s, %s, CURRENT_TIMESTAMP)'
 
+# Add Empty Takes record when customer purchase flight
+cust_ins_takes = 'INSERT INTO Takes (cust_email, flight_airline, flight_num, '\
+'flight_depart_datetime, comment, rating) ' \
+'VALUES(%s, %s, %s, %s, NULL, NULL)'
+
 # Use Case 7
-# Add Rating and Comment to a Previous Flight
 # Info needs to be added to Takes at some point
 # No comment or rating initially
 # cust_email, flight_airline, flight_num, flight_depart_datetime
-cust_ins_takes = 'INSERT INTO Takes (comment, rating, cust_email, '\
-'flight_airline, flight_num, flight_depart_datetime ' \
-'VALUES(%s, %s, %s, %s, NULL, NULL)'
 
 cust_rate_comment = 'UPDATE Takes ' \
                     'SET comment = %s, rating = %s ' \
