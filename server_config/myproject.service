@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve stack.trietmvo.com
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/CS3083
+Environment="PATH=/home/ubuntu/CS3083/env/bin"
+ExecStart=/home/ubuntu/CS3083/env/bin/uwsgi --ini stack.ini
+
+[Install]
+WantedBy=multi-user.target
