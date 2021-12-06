@@ -182,7 +182,7 @@ cust_spent_year = 'SELECT SUM(sold_price) AS sum ' \
                   'AND CAST(date_time AS date) <= CURDATE()'
 
 # Total Spent in Last 6 Months by Month (DEFAULT)
-cust_spent_monthly_sixmonths = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_time) AS month, SUM(sold_price) AS sum ' \
+cust_spent_monthly_sixmonths = 'SELECT YEAR(date_time) AS year, MONTH(date_time) AS month, SUM(sold_price) AS sum ' \
                      'FROM Purchases, Ticket ' \
                      'WHERE cust_email = %s AND t_ID = ID ' \
                      'AND CAST(date_time AS date) >= DATE_ADD(CURDATE(), INTERVAL -6 MONTH) ' \
@@ -191,7 +191,7 @@ cust_spent_monthly_sixmonths = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_t
                      'ORDER BY YEAR(date_time), MONTH(date_time) DESC'
 
 # Total Spent in Range of Dates by Month
-cust_spent_monthly_range = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_time) AS month, SUM(sold_price) AS sum ' \
+cust_spent_monthly_range = 'SELECT YEAR(date_time) AS year, MONTH(date_time) AS month, SUM(sold_price) AS sum ' \
                            'FROM Purchases, Ticket ' \
                            'WHERE cust_email = %s AND t_ID = ID ' \
                            'AND CAST(date_time AS date) >= %s ' \
@@ -308,7 +308,7 @@ staff_total_tickets_sold = 'SELECT COUNT(t_id) AS count ' \
                            'AND airline = %s'
 
 # Monthwise Tickets Sold in Range of Dates
-staff_monthwise_tickets_sold = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_time) AS month, COUNT(t_id) AS sum ' \
+staff_monthwise_tickets_sold = 'SELECT YEAR(date_time) AS year, MONTH(date_time) AS month, COUNT(t_id) AS sum ' \
                                'FROM Ticket, Purchases ' \
                                'WHERE id = t_id ' \
                                'AND CAST(date_time AS date) >= %s ' \
