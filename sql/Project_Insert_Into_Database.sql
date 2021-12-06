@@ -221,3 +221,120 @@ VALUES(
 	NULL, 
 	NULL
 );
+
+INSERT INTO Flight
+VALUES(
+    "China Eastern",
+    "24689",
+    "2021-12-05 20:00:00",
+    "PVG",
+    "2021-12-06 11:00:00",
+    "JFK",
+    1500.00,
+    "1234",
+    "China Eastern",
+    "On-Time"
+);
+
+INSERT INTO Flight
+VALUES(
+    "China Eastern",
+    "13579",
+    "2021-11-12 23:45:00",
+    "JFK",
+    "2021-11-13 14:45:00",
+    "PVG",
+    1350.00,
+    "4321",
+    "China Eastern",
+    "On-Time"
+);
+
+INSERT INTO Ticket
+VALUES(
+    "12493025620",
+    1500.00,
+    "China Eastern",
+    "24689",
+    "2021-12-05 20:00:00",
+    "Credit",
+    "2345678190347052",
+    "Tree Tree",
+    "2025-08-30"
+);
+
+INSERT INTO Purchases
+VALUES(
+    "triet.vo@nyu.edu",
+    "12493025620",
+    "2021-10-10 23:56:21"
+);
+
+INSERT INTO Takes 
+VALUES(
+	'triet.vo@nyu.edu', 
+	'China Eastern', 
+	'24689', 
+	'2021-12-05 20:00:00', 
+	NULL, 
+	NULL
+);
+
+VALUES(
+    "12493025621",
+    1500.00,
+    "China Eastern",
+    "24689",
+    "2021-12-05 20:00:00",
+    "Credit",
+    "2345678190347052",
+    "Tree Tree",
+    "2025-08-30"
+);
+
+INSERT INTO Purchases
+VALUES(
+    "tree@gmail.com",
+    "12493025621",
+    "2021-10-18 13:56:21"
+);
+
+INSERT INTO Takes 
+VALUES(
+	'tree@gmail.com', 
+	'China Eastern', 
+	'24689', 
+	'2021-12-05 20:00:00', 
+	NULL, 
+	NULL
+);
+
+INSERT INTO Ticket
+VALUES(
+    "14463925620",
+    1500.00,
+    "China Eastern",
+    "13579",
+    "2021-11-12 23:45:00",
+    "Credit",
+    "2345678190347052",
+    "Tree Tree",
+    "2025-08-30"
+);
+
+INSERT INTO Purchases
+VALUES(
+    "triet.vo@nyu.edu",
+    "14463925620",
+    "2021-10-29 05:26:00"
+);
+
+INSERT INTO Takes 
+VALUES(
+	'triet.vo@nyu.edu', 
+	'China Eastern', 
+	'13579', 
+	'2021-11-12 23:45:00', 
+	NULL, 
+	NULL
+);

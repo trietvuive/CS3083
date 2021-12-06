@@ -20,7 +20,7 @@ def create_POST_tuple(parameter_list, form):
     return tuple((form[i] for i in parameter_list))
 
 # ------------------------------------ General Use Cases --------------------------------------------
-# USE CASE 6 NOT TESTED
+# ALL TESTED
 
 # Use Case 1
 # Searching for Oneway Flights by Airport Name
