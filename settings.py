@@ -174,14 +174,14 @@ cust_takes_veri = 'SELECT * ' \
 
 # Use Case 8
 # Total Spent in Past Year
-cust_spent_year = 'SELECT SUM(sold_price) ' \
+cust_spent_year = 'SELECT SUM(sold_price) AS sum ' \
                   'FROM Purchases, Ticket ' \
                   'WHERE cust_email = %s AND t_ID = ID ' \
                   'AND CAST(date_time AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
                   'AND CAST(date_time AS date) <= CURDATE()'
 
 # Total Spent in Last 6 Months by Month (DEFAULT)
-cust_spent_monthly_sixmonths = 'SELECT YEAR(date_time), MONTHNAME(date_time), SUM(sold_price) ' \
+cust_spent_monthly_sixmonths = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_time) AS month, SUM(sold_price) AS sum ' \
                      'FROM Purchases, Ticket ' \
                      'WHERE cust_email = %s AND t_ID = ID ' \
                      'AND CAST(date_time AS date) >= DATE_ADD(CURDATE(), INTERVAL -6 MONTH) ' \
@@ -190,7 +190,7 @@ cust_spent_monthly_sixmonths = 'SELECT YEAR(date_time), MONTHNAME(date_time), SU
                      'ORDER BY YEAR(date_time), MONTHNAME(date_time)'
 
 # Total Spent in Range of Dates by Month
-cust_spent_monthly_range = 'SELECT YEAR(date_time), MONTHNAME(date_time), SUM(sold_price) ' \
+cust_spent_monthly_range = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_time) AS month, SUM(sold_price) AS sum ' \
                            'FROM Purchases, Ticket ' \
                            'WHERE cust_email = %s AND t_ID = ID ' \
                            'AND CAST(date_time AS date) >= %s ' \

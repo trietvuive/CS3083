@@ -6,19 +6,24 @@ from route import customer
 import datetime
 
 # Add a new route /customer/register to cust_auth blueprint
-@customer.route('/view_flights/', methods = ['GET','POST'])
-def view_flights():
+@customer.route('/track_spending', methods = ['GET','POST'])
+def track_spending():
     if 'customer_email' not in session:
         return redirect(url_for('customer.login'))
 
-    cursor = conn.cursor()
     customer_email = session['customer_email']
+    
+    cursor = conn.cursor()
+    cursor.execute(cust_spent_year, (customer_email))
+    year_spending = cursor.fetchone()['sum']
+    print(year_spending)
+
+    
     if request.method == 'POST':
         from_date = datetime.datetime.strptime(request.form['From'],'%m/%d/%Y').strftime('%Y-%m-%d')
         to_date = datetime.datetime.strptime(request.form['To'],'%m/%d/%Y').strftime('%Y-%m-%d')
         cursor.execute(cust_range_flights, (customer_email, from_date, to_date))
     else:
-        cursor.execute(cust_future_flights, (customer_email))
+        cursor.execute(cust_spent_monthly_sixmonths, (customer_email))
     records = cursor.fetchall()
-    print(records)
-    return render_template('flight/view_flight_table.html', flights = records)
+    return render_template('flight/customer_spending.html', flights = records, sum = year_spending)
