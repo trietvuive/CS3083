@@ -11,4 +11,5 @@ def home():
 @staff.route('/logout')
 def logout():
     session.pop('staff_username', None)
+    session.pop('staff_airline', None)
     return redirect(url_for('staff.login'))

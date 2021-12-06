@@ -35,29 +35,47 @@ $('input').dateDropper({
 	</div>
 	</form>
 	
-<b style = "margin: auto 100px"> Sum for last year: {{sum}} </b>
-
 {% extends "flight/customer_base.html" %}
 {% block content %}
 	<table id="data" class="table table-striped">
     <thead>
       <tr>
-        <th>Year</th>
-        <th>Month</th>
-		<th>Sum</th>
+        <th>Airline Name</th>
+        <th>Flight Number</th>
+		<th>Departure Date</th>
+		<th>Departure Airport</th>
+		<th>Arrival Date</th>
+		<th>Arrival Airport</th>
+		<th>Base Price</th>
+		<th>Airplane ID</th>
+		<th>Airline Name</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       {% for flight in flights %}
         <tr>
-          <td>{{ flight.year }}</td>
-          <td>{{ flight.month }}</td>
-          <td>{{ flight.sum }}</td>
+          <td>{{ flight.airline_name }}</td>
+          <td>
+			<a href={{url_for("staff.view_particular_flight", flight_number = flight.flight_num)}}>
+				<div style="height:100%;width:100%">
+					{{ flight.flight_num }}
+				</div>
+			</a>
+		  </td>
+          <td>{{ flight.depart_datetime }}</td>
+          <td>{{ flight.depart_airport }}</td>
+          <td>{{ flight.arrival_datetime }}</td>
+          <td>{{ flight.arrival_airport }}</td>
+          <td>{{ flight.base_price }}</td>
+          <td>{{ flight.airplane_ID }}</td>
+          <td>{{ flight.airplane_airline_name }}</td>
+          <td>{{ flight.status }}</td>
         </tr>
       {% endfor %}
     </tbody>
-  </table>
   
+ 
 {% endblock %}
 
 

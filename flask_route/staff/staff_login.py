@@ -12,14 +12,18 @@ def login():
         post_tuple = create_POST_tuple(['Username','Password'], request.form)
         cursor = conn.cursor()
         cursor.execute(staff_log_veri_query, post_tuple)
-
-        
         data = cursor.fetchone()
+
+        cursor.execute(staff_airline, (post_tuple[0]))
+        airline = cursor.fetchone()
+        
         cursor.close()
         if not data and not development:
             error = 'Invalid Credentials...'
         else:
             session['staff_username'] = post_tuple[0]
+            session['staff_airline'] = airline['airline'] if airline is not None else "China Eastern"
+                
             return redirect(url_for('staff.home'))
     return render_template('staff/staff_login.html', error = error)
 
