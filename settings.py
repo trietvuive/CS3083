@@ -330,43 +330,25 @@ staff_revenue_year = 'SELECT SUM(sold_price) AS sum ' \
 
 # Use Case 13
 # Input is airline twice
-# Top Destination in Last 3 Months
-staff_top_destinations_month = 'SELECT city ' \
-                               'FROM Airport ' \
-                               'WHERE code IN( ' \
-                               'SELECT arrival_airport ' \
-                               'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
-                               'FROM Flight NATURAL JOIN Ticket ' \
+# Top 3 Destinations in Last 3 Months
+staff_top_destinations_month = 'SELECT city, COUNT(id) as visitors ' \
+                               'FROM Flight NATURAL JOIN Ticket, Airport ' \
                                'WHERE airline_name = %s AND airline_name = airline ' \
                                'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -3 MONTH) ' \
                                'AND CAST(depart_datetime AS date) <= CURDATE() ' \
-                               'GROUP BY arrival_airport) AS t ' \
-                               'WHERE visitors IN( ' \
-                               'SELECT MAX(visitors) ' \
-                               'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
-                               'FROM Flight NATURAL JOIN Ticket ' \
-                               'WHERE airline_name = %s AND airline_name = airline ' \
-                               'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -3 MONTH) ' \
-                               'AND CAST(depart_datetime AS date) <= CURDATE() ' \
-                               'GROUP BY arrival_airport) AS t))'
+                               'AND code = arrival_airport ' \
+                               'GROUP BY city ' \
+                               'ORDER BY visitors DESC ' \
+                               'LIMIT 3'
 
-# Top Destination in Last Year
-staff_top_destinations_year = 'SELECT city ' \
-                              'FROM Airport ' \
-                              'WHERE code IN( ' \
-                              'SELECT arrival_airport ' \
-                              'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
-                              'FROM Flight NATURAL JOIN Ticket ' \
+# Top 3 Destinations in Last Year
+staff_top_destinations_year = 'SELECT city, COUNT(id) as visitors ' \
+                              'FROM Flight NATURAL JOIN Ticket, Airport ' \
                               'WHERE airline_name = %s AND airline_name = airline ' \
                               'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
                               'AND CAST(depart_datetime AS date) <= CURDATE() ' \
-                              'GROUP BY arrival_airport) AS t ' \
-                              'WHERE visitors IN( ' \
-                              'SELECT MAX(visitors) ' \
-                              'FROM (SELECT arrival_airport, COUNT(id) as visitors ' \
-                              'FROM Flight NATURAL JOIN Ticket ' \
-                              'WHERE airline_name = %s AND airline_name = airline ' \
-                              'AND CAST(depart_datetime AS date) >= DATE_ADD(CURDATE(), INTERVAL -1 YEAR) ' \
-                              'AND CAST(depart_datetime AS date) <= CURDATE() ' \
-                              'GROUP BY arrival_airport) AS t))'
+                              'AND code = arrival_airport ' \
+                              'GROUP BY city ' \
+                              'ORDER BY visitors DESC ' \
+                              'LIMIT 3'
 
