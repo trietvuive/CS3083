@@ -1,0 +1,17 @@
+wsgi.py
+templates
+static
+stack.sock
+stack.py
+stack.ini
+sql
+settings.py
+server_config
+route.py
+requirements.txt
+flask_route
+env
+all_files.txt
+__pycache__
+TODO.txt
+README.md
