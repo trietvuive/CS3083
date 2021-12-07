@@ -20,5 +20,5 @@ def view_flights():
     else:
         cursor.execute(cust_future_flights, (customer_email))
     records = cursor.fetchall()
-    print(records)
+    cursor.close()
     return render_template('flight/view_flight_table.html', flights = records)

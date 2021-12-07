@@ -14,13 +14,14 @@ def view_revenue():
     cursor = conn.cursor()
     airline = session['staff_airline']
     cursor.execute(staff_revenue_month, (airline))
-    month_revenue = int(cursor.fetchone()['sum'])
+    result = cursor.fetchone()['sum']
+    month_revenue = int(result) if result else 0
 
     cursor.execute(staff_revenue_year, (airline))
-    year_revenue = int(cursor.fetchone()['sum'])
+    result = cursor.fetchone()['sum']
+    year_revenue = int(result) if result else 0
 
-    
-    
+    cursor.close()
     
     return render_template('staff/staff_revenue.html', year = year_revenue, month = month_revenue)
 

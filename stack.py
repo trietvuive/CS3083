@@ -25,6 +25,10 @@ app.register_blueprint(staff, url_prefix = '/staff')
 def invalid_route(e):
     return render_template('root/404.html')
 
+@app.errorhandler(500)
+def internal_error(e):
+    return render_template('root/503.html')
+
 if __name__ == "__main__":
     #127.0.0.1 is localhost
     app.run('127.0.0.1', 5000, debug = True)

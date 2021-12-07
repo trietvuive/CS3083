@@ -21,7 +21,6 @@ def view_flights():
         cursor.execute(staff_show_flights_30days, (airline_name))
     records = cursor.fetchall()
     cursor.close()
-    print(records)
     return render_template('flight/view_flight_table_staff.html', flights = records)
 
 @staff.route('/view_particular_flights/')
@@ -35,6 +34,6 @@ def view_particular_flight():
     cursor = conn.cursor()
     cursor.execute(staff_show_customers, (airline_name, flight_num, depart_date))
     customers = cursor.fetchall()
-    print(customers)
+    cursor.close()
     
     return render_template('flight/customer_table.html', customers = customers)
