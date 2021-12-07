@@ -23,7 +23,7 @@ CREATE TABLE StaffPhoneNumbers(
 
 CREATE TABLE Airport(
     code VARCHAR(3),
-    name VARCHAR(25) NOT NULL,
+    name VARCHAR(150) NOT NULL,
     city VARCHAR(20) NOT NULL,
     PRIMARY KEY(code)
 ); 
