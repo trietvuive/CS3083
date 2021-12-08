@@ -26,5 +26,4 @@ def track_spending():
     else:
         cursor.execute(cust_spent_monthly_sixmonths, (customer_email))
     records = cursor.fetchall()
-    cursor.close()
     return render_template('flight/customer_spending.html', flights = records, sum = year_spending)

@@ -18,7 +18,6 @@ def check_status():
         else:
             cursor.execute(search_status_departure_query, (airline_name, flight_number, date))
         records = cursor.fetchall()
-        cursor.close()
         return render_template('flight/status_table.html', title = 'Status', flights = records, departure = (choice == 'DEPARTURE'))
     return render_template('flight/checking_flight_status.html')
 

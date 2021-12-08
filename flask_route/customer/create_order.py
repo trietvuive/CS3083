@@ -15,6 +15,7 @@ def create_order():
     airline = request.args['airline']
     depart_date = request.args['depart_date']
     email = session['customer_email']
+    print(flight_number, airline, depart_date)
 
     cursor = conn.cursor()
     cursor.execute(number_of_seats, (airline, flight_number, depart_date))

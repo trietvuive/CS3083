@@ -15,6 +15,7 @@ def view_ratings():
     cursor.execute(staff_show_avg_rating, (airline_name))
     records = cursor.fetchall()
     cursor.close()
+    print(records)
     return render_template('flight/view_flight_avg_rating.html', flights = records)
 
 @staff.route('/view_ratings/flight/')
@@ -28,6 +29,7 @@ def view_customer_review():
     cursor = conn.cursor()
     cursor.execute(staff_show_ratings_comments, (airline_name, flight_num, depart_date))
     customers = cursor.fetchall()
+    print(customers)
     cursor.close()
     
     return render_template('flight/review_table.html', customers = customers)

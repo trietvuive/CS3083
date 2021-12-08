@@ -20,6 +20,8 @@ def view_destination():
     year = cursor.fetchall()
 
     cursor.close()
+    print(airline_name, month)
+    print(year)
     
     
     return render_template('flight/view_destination.html', month = month, year = year)
