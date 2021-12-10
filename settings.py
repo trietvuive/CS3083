@@ -2,7 +2,7 @@ import pymysql
 import hashlib
 
 # development mode
-development = True
+development = False
 
 # store global variables, basically 
 
