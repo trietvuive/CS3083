@@ -308,7 +308,7 @@ staff_monthwise_tickets_sold = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_t
                                'AND CAST(date_time AS date) <= %s ' \
                                'AND airline = %s ' \
                                'GROUP BY YEAR(date_time), MONTHNAME(date_time) ' \
-                               'ORDER BY YEAR(date_time), MONTH(date_time) DESC'
+                               'ORDER BY YEAR(date_time), FORMAT(date_time, \'MM\') DESC'
 
 # Use Case 12
 # View Earnings
