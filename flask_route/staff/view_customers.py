@@ -13,7 +13,7 @@ def view_frequent_customer():
 
     cursor = conn.cursor()
     airline_name = session['staff_airline']
-    cursor.execute(staff_show_freq_customer, (airline_name, airline_name))
+    cursor.execute(staff_show_freq_customer, (airline_name))
     records = cursor.fetchall()
     cursor.close()
     return render_template('flight/view_frequent_customers.html', customers = records)

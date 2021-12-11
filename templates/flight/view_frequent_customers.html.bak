@@ -17,6 +17,7 @@
 					</div>
 				</a>
 			</td>
+          <td>{{ customer.cust_email }}</td>
           <td>{{ customer.times }}</td>
         </tr>
       {% endfor %}

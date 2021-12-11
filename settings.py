@@ -301,13 +301,13 @@ staff_total_tickets_sold = 'SELECT COUNT(t_id) AS count ' \
                            'AND airline = %s'
 
 # Monthwise Tickets Sold in Range of Dates
-staff_monthwise_tickets_sold = 'SELECT YEAR(date_time) AS year, MONTH(date_time) AS month, COUNT(t_id) AS sum ' \
+staff_monthwise_tickets_sold = 'SELECT YEAR(date_time) AS year, MONTHNAME(date_time) AS month, COUNT(t_id) AS sum ' \
                                'FROM Ticket, Purchases ' \
                                'WHERE id = t_id ' \
                                'AND CAST(date_time AS date) >= %s ' \
                                'AND CAST(date_time AS date) <= %s ' \
                                'AND airline = %s ' \
-                               'GROUP BY YEAR(date_time), MONTH(date_time) ' \
+                               'GROUP BY YEAR(date_time), MONTHNAME(date_time) ' \
                                'ORDER BY YEAR(date_time), MONTH(date_time) DESC'
 
 # Use Case 12
