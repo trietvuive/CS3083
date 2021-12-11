@@ -5,23 +5,23 @@ import pymysql
 
 @staff.route('/login', methods = ['GET','POST'])
 def login():
-    if 'staff_username' in session:
-        return redirect(url_for('staff.home', name = session['staff_username']))
     error = None
     if request.method == 'POST':
-        post_tuple = create_POST_tuple(['Username','Password'], request.form)
+        username = request.form['Username']
+        password = md5(request.form['Password'])
         cursor = conn.cursor()
-        cursor.execute(staff_log_veri_query, post_tuple)
+        cursor.execute(staff_log_veri_query, (username, password))
         data = cursor.fetchone()
+        print(data)
 
-        cursor.execute(staff_airline, (post_tuple[0]))
+        cursor.execute(staff_airline, (username))
         airline = cursor.fetchone()
         
         cursor.close()
         if not data and not development:
             error = 'Invalid Credentials...'
         else:
-            session['staff_username'] = post_tuple[0]
+            session['staff_username'] = username
             session['staff_airline'] = airline['airline'] if airline is not None else "China Eastern"
                 
             return redirect(url_for('staff.home'))

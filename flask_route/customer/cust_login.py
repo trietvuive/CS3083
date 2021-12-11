@@ -5,8 +5,6 @@ import pymysql
 
 @customer.route('/login', methods = ['GET','POST'])
 def login():
-    if 'customer_email' in session:
-        return redirect(url_for('customer.home', name = session['customer_email']))
     error = None
     if request.method == 'POST':
         email = request.form['Email']
